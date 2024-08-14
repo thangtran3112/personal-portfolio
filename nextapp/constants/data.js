@@ -23,7 +23,8 @@ export const ACCORDION = [
   },
   {
     question: "What motivates you in your career?",
-    answer: "My passion, driving me to continually grow and excel in my career.",
+    answer:
+      "My passion, driving me to continually grow and excel in my career.",
   },
   {
     question: "Refund policy on cancellations?",
@@ -31,7 +32,8 @@ export const ACCORDION = [
   },
   {
     question: "How do you approach problem-solving?",
-    answer: "I tackle problems methodically, breaking them down into smaller tasks.",
+    answer:
+      "I tackle problems methodically, breaking them down into smaller tasks.",
   },
   {
     question: "What technologies are you proficient in?",
@@ -39,10 +41,10 @@ export const ACCORDION = [
   },
   {
     question: "Can you describe your communication style?",
-    answer: "I communicate clearly and openly, ensuring everyone is on the same page.",
-  }
+    answer:
+      "I communicate clearly and openly, ensuring everyone is on the same page.",
+  },
 ];
-
 
 export const EDUCATION = [
   {
@@ -237,4 +239,12 @@ export const SOCIALS = {
     "/youtube.svg",
     "/linkedin.svg",
   ],
+};
+
+export const SOCIALS_LINKS = {
+  Facebook: "https://www.facebook.com/",
+  Instagram: "https://www.instagram.com/",
+  Twitter: "https://www.twitter.com/",
+  Linkedin: "https://www.linkedin.com/",
+  Github: "https://www.github.com/thangtran3112",
 };
