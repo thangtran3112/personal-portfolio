@@ -35,11 +35,11 @@ export const ACCORDION = [
 
 export const EDUCATION = [
   {
-    title: "Bachelor of Engineering, HUST University, Vietnam",
+    title: "Bachelor of Engineering - HUST University, Vietnam",
     year: "2009",
   },
   {
-    title: "Master of Computer Science, McGill University, Canada",
+    title: "Master of Computer Science - McGill University, Canada",
     year: "2013",
   },
 ];
@@ -49,8 +49,12 @@ export const CERITIFCATES = [
     year: "2023",
   },
   {
-    title: "AWS Certified Soltion Architect - Amazon Web Services",
+    title: "AWS Certified Solution Architect - Amazon Web Services",
     year: "2023",
+  },
+  {
+    title: "Cisco Certified Internetwork Professional - Cisco Systems",
+    year: "2009",
   },
 ];
 
