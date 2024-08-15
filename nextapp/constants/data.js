@@ -19,55 +19,38 @@ export const ACCORDION = [
   {
     question: "Who are you and what do you do?",
     answer:
-      "I'm Steve Parker, a passionate developer with a keen interest in development.",
+      "I'm Thang, a passionate developer with a passion for full-stack applications. I can architect, design and implement all parts of a complex web application.",
   },
   {
     question: "What motivates you in your career?",
     answer:
-      "My passion, driving me to continually grow and excel in my career.",
+      "My passion for modern tech stacks and using the latest technologies to build robust and scalable applications.",
   },
   {
-    question: "Refund policy on cancellations?",
-    answer: "Refunds available per our policy.",
-  },
-  {
-    question: "How do you approach problem-solving?",
+    question: "Which technologies you are interested in ?",
     answer:
-      "I tackle problems methodically, breaking them down into smaller tasks.",
-  },
-  {
-    question: "What technologies are you proficient in?",
-    answer: "I'm proficient in JavaScript, HTML, CSS, and various frameworks.",
-  },
-  {
-    question: "Can you describe your communication style?",
-    answer:
-      "I communicate clearly and openly, ensuring everyone is on the same page.",
+      "React/NextJS for frontend, PostgreSQL/MongoDB for databases, ExpressJS or Java Spring Boot for backend. Recently, I like AWS SageMaker and AWS Bedrock, for AI development.",
   },
 ];
 
 export const EDUCATION = [
   {
-    title: "Full Stack Development - ABC University, USA",
-    year: "2011",
-  },
-  {
-    title: "FontEnd Development - ABC University, Ldondon",
+    title: "Bachelor of Engineering, HUST University, Vietnam",
     year: "2009",
   },
   {
-    title: "Graphic Designing - ABC University, Turkey",
-    year: "2006",
+    title: "Master of Computer Science, McGill University, Canada",
+    year: "2013",
   },
 ];
-export const EXPERINCE = [
+export const CERITIFCATES = [
   {
-    title: "UX/UI Designer - XYZ Company",
-    year: "2012 - 2023",
+    title: "AWS Certified Software Developer - Amazon Web Services",
+    year: "2023",
   },
   {
-    title: "Web Developer - XYZ Company",
-    year: "2010 - 2012",
+    title: "AWS Certified Soltion Architect - Amazon Web Services",
+    year: "2023",
   },
 ];
 
@@ -172,34 +155,34 @@ export const WORKDATA = [
 // TESTIMONIAL SECTION
 export const TESTIMONIAL = [
   {
-    title: "James Martinez",
-    profession: "Director, Nova Gold",
-    URL: "/person-1.jpg",
-    desc: "Fantastic destinations, knowledgeable guides, seamless logistics. Spectacular views and memories. Exceeded expectations; worth every penny",
+    title: "Cisco Systems",
+    profession: "Software Engineer Intern, 04/2012 - 08/2012",
+    URL: "/cisco-logo.jpg",
+    desc: "Developed and fixed defects for In-Service-Software-Update feature of Cisco Router Operating System.",
   },
   {
-    title: "Sophia Anderson",
-    profession: "Manager, Safe City",
-    URL: "/person-2.jpg",
-    desc: "Unforgettable experiences, friendly staff, and top-notch organization. Highly recommended for adventurous souls. A must-try. Highly recommend",
+    title: "Replicon",
+    profession: "Fullstack Software Engineer, 04/2014 - 02/2022",
+    URL: "/replicon-logo.jpg",
+    desc: "Developed AWS applications for time-attendance tracking, timeoff management, scheduling, project management, compliance payroll, and more.",
   },
   {
-    title: "Lily Walker",
-    profession: "Director, High Gold",
-    URL: "/person-3.jpg",
-    desc: "Unbelievable sights, professional guides, seamless planning. Unmatched experiences that leave you wanting more. Highly recommended",
+    title: "Nortal U.S",
+    profession: "Senior Fullstack Consultant, 09/2022 - Present",
+    URL: "/nortal-logo.jpg",
+    desc: "Worked on internal Amazon projects, mainly on global Amazon Facilities, Buildings, Devices management applications. Also worked on Backend development for TMobile prepaid public APIs.",
   },
   {
-    title: "Ninna Williams",
-    profession: "CEO, Rafa Builds",
-    URL: "/person-4.jpg",
-    desc: "Unparalleled expertise, personalized service, breathtaking destinations. Consistently delivers an extraordinary travel experience.",
+    title: "Mastercard",
+    profession: "Senior Software Developer in Test, 05/2022 - 08/2022",
+    URL: "/mastercard-logo.jpg",
+    desc: "Working on both development and testing of file transfer and credit card dispute microservices",
   },
   {
-    title: "Ali Khan",
-    profession: "CEO, High Chase",
-    URL: "/person-5.jpg",
-    desc: "Outstanding journeys, knowledgeable guides, seamless execution. Each trip exceeds expectations, ensuring lasting memories and remarkable experiences.",
+    title: "Pason Inc.",
+    profession: "Software Developer in Test, 02/2022 - 04/2022",
+    URL: "/pason-logo.jpg",
+    desc: "Working on writing UI tests on drilling softwaresfor Oil & Gas Industry.",
   },
 ];
 
