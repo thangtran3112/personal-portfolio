@@ -17,7 +17,8 @@ import {
 } from "react-icons/si";
 import { BsFiletypeJava } from "react-icons/bs";
 import { SiSpring, SiSpringboot } from "react-icons/si";
-
+import { Link } from "next/link";
+import { RESUME_LINK } from "@/constants/data";
 const Hero = () => {
   return (
     <section className="max-padd-container bg-hero bg-no-repeat bg-center bg-cover py-20 bg-[#fdf3fb] dark:bg-transparent">
@@ -37,8 +38,11 @@ const Hero = () => {
               Hire me
               <MoveRight size={20} />
             </Button>
-            <Button className="shadow-xl bg-black hover:bg-[#222] text-white">
-              Download CV
+            <Button
+              className="shadow-xl bg-black hover:bg-[#222] text-white"
+              asChild
+            >
+              <a href={RESUME_LINK}>Download CV</a>
             </Button>
           </div>
           <div className="mt-20">
