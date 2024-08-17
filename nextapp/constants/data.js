@@ -1,4 +1,4 @@
-import { Paintbrush, Layers, FileJson } from "lucide-react";
+import { Paintbrush, Layers, FileJson, Cloud, Cloudy } from "lucide-react";
 
 export const LINKS = [
   {
@@ -19,17 +19,18 @@ export const ACCORDION = [
   {
     question: "Who are you and what do you do?",
     answer:
-      "I'm Thang, a passionate developer with a passion for full-stack applications. I can architect, design and implement all parts of a complex web application.",
+      "I'm Thang, with a passion for full-stack applications using modern technologies. I can architect, design and implement all parts of a complex web application.",
   },
   {
-    question: "What motivates you in your career?",
+    question: "Which technologies you are familar with ?",
     answer:
-      "My passion for modern tech stacks and using the latest technologies to build robust and scalable applications.",
+      "React/NextJS for frontend, PostgreSQL/MongoDB for databases, ExpressJS or Java Spring Boot for scalable backend.",
   },
   {
-    question: "Which technologies you are interested in ?",
+    question:
+      "Which languages, and technologies, that you want to learn in the future?",
     answer:
-      "React/NextJS for frontend, PostgreSQL/MongoDB for databases, ExpressJS or Java Spring Boot for backend. Recently, I like AWS SageMaker and AWS Bedrock, for AI development.",
+      "Python, AWS SageMaker for Machine Learning, Golang for Backend, Columnar DB such as Amazon Redshift or Google BigQuery for big data analytics.",
   },
 ];
 
@@ -64,19 +65,19 @@ export const SERVICES = [
     icon: <Paintbrush size={44} strokeWidth={0.8} />,
     title: "FrontEnd Development",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, aspernatur fugit! Dicta quo quidem soluta.",
+      "Worked on various Enterprise and Open-Source FE projects with React, Redux, CSS, Tailwind, NextJS, Material UI, AWS Cloudscape and recently Shadcn UI. Experiences in both SPA, SSR and ISG deployments with AWS.",
   },
   {
     icon: <FileJson size={44} strokeWidth={0.8} />,
     title: "BackEnd Development",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, aspernatur fugit! Dicta quo quidem soluta.",
+      "Worked on both single-dockerized BE, multi-containers BE, serverless and microservices architectures. Experiences in design and deploy services with Docker, Kubernetes, and AWS.",
   },
   {
-    icon: <Layers size={44} strokeWidth={0.8} />,
-    title: "FullStack Development",
+    icon: <Cloudy size={44} strokeWidth={0.8} />,
+    title: "Cloud Computing",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, aspernatur fugit! Dicta quo quidem soluta.",
+      "Years of working with AWS and infrastructure-as-code. AWS-Certified and familar with various AWS services, such as EC2, S3, RDS, Lambda, Cloudfront, Cognito, API Gateway, AppSync, CDK, SDK, ElasticCache, DynamoDB, ECS, EKS, Fargate, etc.",
   },
 ];
 
@@ -190,33 +191,6 @@ export const TESTIMONIAL = [
   },
 ];
 
-// FOOTER SECTION
-export const FOOTER_LINKS = [
-  {
-    title: "Learn More",
-    links: [
-      "About Us",
-      "Destinations",
-      "Travel Guides",
-      "Book Now",
-      "FAQ",
-      "Privacy Policy",
-    ],
-  },
-  {
-    title: "Our Community",
-    links: ["Terms and Conditions", "Special Offers", "Customer Reviews"],
-  },
-];
-
-export const FOOTER_CONTACT_INFO = {
-  title: "Contact Us",
-  links: [
-    { label: "Contact Number", value: "123-456-7890" },
-    { label: "Email Address", value: "info@passport.com" },
-  ],
-};
-
 export const SOCIALS = {
   title: "Social",
   links: [
@@ -229,9 +203,12 @@ export const SOCIALS = {
 };
 
 export const SOCIALS_LINKS = {
-  Facebook: "https://www.facebook.com/",
-  Instagram: "https://www.instagram.com/",
-  Twitter: "https://www.twitter.com/",
-  Linkedin: "https://www.linkedin.com/",
+  Facebook: "https://www.facebook.com/thangtran311286",
+  Instagram: "https://www.instagram.com/thangtran311286",
+  Twitter: "https://www.twitter.com/thangtran3112",
+  Linkedin: "https://www.linkedin.com/in/thang-tran-23197784",
   Github: "https://www.github.com/thangtran3112",
 };
+
+export const RESUME_LINK =
+  "https://1drv.ms/b/s!ApP82c8MU2XKkock6HuvrYABYLn-DA?e=sLe5Xf";

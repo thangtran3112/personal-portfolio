@@ -10,9 +10,10 @@ const page = () => {
           <span className="text-primary uppercase font-bold">Get in touch</span>
           <h3 className="h3 font-extrabold">Contact Me</h3>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
-            officia necessitatibus assumenda, reprehenderit praesentium
-            doloribus, facere odio obcaecati iure repudiandae magni!
+            Whether you have a project in mind, need some advice, or just want
+            to chat about the latest in tech, I'd love to connect. I'm always
+            excited to collaborate and explore new opportunities. Let's build
+            something amazing together!
           </p>
           <div className="flex flex-col gap-y-5 mt-6 medium-15">
             <div className="flex gap-x-3">
