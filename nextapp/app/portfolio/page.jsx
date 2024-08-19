@@ -35,6 +35,7 @@ const page = () => {
                           title={project.title}
                           category={project.category}
                           des={project.des}
+                          git={project.git}
                         />
                       </div>
                     );
@@ -54,6 +55,7 @@ const page = () => {
                           title={project.title}
                           category={project.category}
                           des={project.des}
+                          git={project.git}
                         />
                       </div>
                     );
@@ -73,6 +75,7 @@ const page = () => {
                           title={project.title}
                           category={project.category}
                           des={project.des}
+                          git={project.git}
                         />
                       </div>
                     );

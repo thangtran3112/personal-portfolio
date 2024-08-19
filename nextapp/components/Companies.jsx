@@ -40,7 +40,7 @@ const Companies = () => {
                   slidesPerView: 2,
                   spaceBetween: 30,
                 },
-                1024: {
+                1280: {
                   slidesPerView: 3,
                   spaceBetween: 30,
                 },
@@ -87,7 +87,7 @@ const TestimonialItem = ({ desc, title, profession, URL }) => {
         <span className="absolute top-0 right-4 z-10 opacity-50 dark:opacity-20">
           <Image src={"/sparkle.svg"} alt="" height={62} width={62} />
         </span>
-        <CardDescription>"{desc}"</CardDescription>
+        <CardDescription className="line-clamp-4">"{desc}"</CardDescription>
       </CardContent>
     </Card>
   );

@@ -17,8 +17,7 @@ import {
 } from "react-icons/si";
 import { BsFiletypeJava } from "react-icons/bs";
 import { SiSpring, SiSpringboot } from "react-icons/si";
-import { Link } from "next/link";
-import { RESUME_LINK } from "@/constants/data";
+import { RESUME_LINK, SOCIALS_LINKS } from "@/constants/data";
 const Hero = () => {
   return (
     <section className="max-padd-container bg-hero bg-no-repeat bg-center bg-cover py-20 bg-[#fdf3fb] dark:bg-transparent">
@@ -30,13 +29,15 @@ const Hero = () => {
           </h1>
           <p>
             Explore my portfolio where creativity and functionality converge,
-            showcasing innovative web development projects crafted with
-            precision and passion for digital excellence.
+            showcasing clean web development projects crafted with precision and
+            scalable modern backends on various infrastructure setups.
           </p>
           <div className="mt-6 flex gap-4">
-            <Button className="gap-x-2 shadow-xl">
-              Hire me
-              <MoveRight size={20} />
+            <Button className="gap-x-2 shadow-xl" asChild>
+              <a href={SOCIALS_LINKS.Linkedin}>
+                Connect me
+                <MoveRight size={20} />
+              </a>
             </Button>
             <Button
               className="shadow-xl bg-black hover:bg-[#222] text-white"

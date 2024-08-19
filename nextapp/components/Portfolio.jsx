@@ -6,6 +6,8 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import PfolioCard from "./PfolioCard";
 import { WORKDATA } from "@/constants/data";
+import { SOCIALS_LINKS } from "@/constants/data";
+import { GitHubLink } from "./SocialIcons";
 
 const Work = () => {
   return (
@@ -17,7 +19,10 @@ const Work = () => {
           <span className="text-primary uppercase font-bold">
             Personal Projects
           </span>
-          <h3 className="h3 font-extrabold">My Portfolios</h3>
+          <h3 className="h3 font-extrabold flexCenter gap-3 lg:gap-4 pr-2">
+            My Portfolios
+            <GitHubLink fullUrl={SOCIALS_LINKS.Github} />
+          </h3>
         </div>
         {/* Projects */}
         <div className="mx-auto max-w-[70%] md:max-w-full xl:max-w-[70%]">
@@ -47,6 +52,7 @@ const Work = () => {
                       title={project.title}
                       category={project.category}
                       des={project.des}
+                      git={project.git}
                     />
                   </SwiperSlide>
                 );
