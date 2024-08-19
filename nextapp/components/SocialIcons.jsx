@@ -9,6 +9,17 @@ import {
   RiTwitterFill,
 } from "react-icons/ri";
 
+export const GitHubLink = ({ fullUrl }) => {
+  return (
+    <Link
+      href={fullUrl}
+      className="text-[#a026e7] text-2xl hover:-translate-y-1 transition-all duration-500"
+    >
+      <RiGithubFill />
+    </Link>
+  );
+};
+
 const SocialIcons = () => {
   return (
     <div className="flex gap-6 lg:gap-6 pr-4">
@@ -30,12 +41,7 @@ const SocialIcons = () => {
       >
         <RiLinkedinFill />
       </Link>
-      <Link
-        href={SOCIALS_LINKS.Github}
-        className="text-[#a026e7] text-2xl hover:-translate-y-1 transition-all duration-500"
-      >
-        <RiGithubFill />
-      </Link>
+      <GitHubLink fullUrl={SOCIALS_LINKS.Github} />
       <Link
         href={SOCIALS_LINKS.Facebook}
         className="text-[#5272f2] text-2xl hover:-translate-y-1 transition-all duration-500"
