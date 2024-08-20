@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
@@ -17,7 +18,15 @@ import {
 } from "react-icons/si";
 import { BsFiletypeJava } from "react-icons/bs";
 import { SiSpring, SiSpringboot } from "react-icons/si";
-import { RESUME_LINK, SOCIALS_LINKS } from "@/constants/data";
+import { RESUME, SOCIALS_LINKS } from "@/constants/data";
+import { download } from "@/lib/utils";
+
+const downloadHandler = (reactMouseEvent) => {
+  reactMouseEvent.preventDefault();
+
+  download(RESUME.downloadable, RESUME.title);
+};
+
 const Hero = () => {
   return (
     <section className="max-padd-container bg-hero bg-no-repeat bg-center bg-cover py-20 bg-[#fdf3fb] dark:bg-transparent">
@@ -41,9 +50,15 @@ const Hero = () => {
             </Button>
             <Button
               className="shadow-xl bg-black hover:bg-[#222] text-white"
+              onClick={downloadHandler}
+            >
+              Download CV
+            </Button>
+            <Button
+              className="shadow-xl bg-black hover:bg-[#222] text-white"
               asChild
             >
-              <a href={RESUME_LINK}>Download CV</a>
+              <a href={RESUME.oneDrive}>View CV</a>
             </Button>
           </div>
           <div className="mt-20">
