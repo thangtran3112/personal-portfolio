@@ -12,13 +12,30 @@ import { FaEye } from "react-icons/fa6";
 import { MdOutlineZoomOutMap } from "react-icons/md";
 import { Badge } from "./ui/badge";
 import { GitHubLink } from "./SocialIcons";
+import { LinkIcon } from "lucide-react";
 
-const PfolioCard = ({ url, title, category, des, git }) => {
+const getCategories = (frontEnd, backEnd) => {
+  const category = [];
+  if (frontEnd) {
+    category.push("FrontEnd");
+  }
+  if (backEnd) {
+    category.push("BackEnd");
+  }
+  return category;
+};
+
+const PfolioCard = ({ url, title, frontEnd, backEnd, des, git, link }) => {
+  const categories = getCategories(frontEnd, backEnd);
   return (
     <Card className="relative group rounded-xl overflow-hidden">
       <CardHeader>
-        <div>
-          <Badge className="mb-3 capitalize">{category}</Badge>
+        <div className="flex flex-row gap-3 justify-start">
+          {categories.map((category) => (
+            <Badge key={category} className="mb-3 capitalize">
+              {category}
+            </Badge>
+          ))}
         </div>
         <div className="rounded-lg !inline-flex relative overflow-hidden">
           <Image
@@ -58,7 +75,12 @@ const PfolioCard = ({ url, title, category, des, git }) => {
       {/* info */}
       <CardContent>
         <CardTitle className="mb-2 flex gap-3 lg:gap-4 items-center -mt-1">
-          {title}
+          <Link
+            href={link}
+            className="text-blue-500 hover:-translate-y-1 hover:underline transition-all duration-500"
+          >
+            {title}
+          </Link>
           <GitHubLink fullUrl={git} />
         </CardTitle>
         <CardDescription>{des}</CardDescription>

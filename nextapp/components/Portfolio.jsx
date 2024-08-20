@@ -44,15 +44,17 @@ const Work = () => {
             className="h-[422px] sm:h-[477px] mt-10"
           >
             {WORKDATA.map((project, i) => {
-              if (project.category === "fullStack") {
+              if (project.frontEnd) {
                 return (
                   <SwiperSlide key={i} className="flexCenter">
                     <PfolioCard
                       url={project.url}
                       title={project.title}
-                      category={project.category}
+                      frontEnd={project.frontEnd}
+                      backEnd={project.backEnd}
                       des={project.des}
                       git={project.git}
+                      link={project.link}
                     />
                   </SwiperSlide>
                 );

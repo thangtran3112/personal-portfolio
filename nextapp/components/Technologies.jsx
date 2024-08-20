@@ -77,7 +77,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.reactjs.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.reactjs.content}
       >
-        <RiReactjsLine className="text-4xl text-cyan-400" />
+        <RiReactjsLine className="text-5xl text-cyan-400" />
       </motion.div>
       <motion.div
         variants={iconVariants(3)}
@@ -87,7 +87,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.nextjs.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.nextjs.content}
       >
-        <TbBrandNextjs className="text-4xl" />
+        <TbBrandNextjs className="text-5xl" />
       </motion.div>
       <motion.div
         variants={iconVariants(5)}
@@ -97,7 +97,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.aws.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.aws.content}
       >
-        <FaAws className="text-4xl text-amber-500" />
+        <FaAws className="text-5xl text-amber-500" />
       </motion.div>
       <motion.div
         variants={iconVariants(6)}
@@ -107,7 +107,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.nodejs.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.nodejs.content}
       >
-        <FaNodeJs className="text-4xl text-fuchsia-400" />
+        <FaNodeJs className="text-5xl text-fuchsia-400" />
       </motion.div>
       <motion.div
         variants={iconVariants(4)}
@@ -117,7 +117,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.postgresql.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.postgresql.content}
       >
-        <BiLogoPostgresql className="text-4xl text-sky-700" />
+        <BiLogoPostgresql className="text-5xl text-sky-700" />
       </motion.div>
       <motion.div
         variants={iconVariants(2)}
@@ -127,7 +127,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.nestjs.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.nestjs.content}
       >
-        <SiNestjs className="text-4xl text-rose-500" />
+        <SiNestjs className="text-5xl text-rose-500" />
       </motion.div>
       <motion.div
         variants={iconVariants(3)}
@@ -137,7 +137,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.mysql.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.mysql.content}
       >
-        <SiMysql className="text-4xl text-purple-500" />
+        <SiMysql className="text-5xl text-purple-500" />
       </motion.div>
       <motion.div
         variants={iconVariants(5)}
@@ -147,7 +147,7 @@ const FirstTechsGroup = () => {
         data-tooltip-id={Tooltips.mongodb.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.mongodb.content}
       >
-        <SiMongodb className="text-4xl text-green-500" />
+        <SiMongodb className="text-5xl text-green-500" />
       </motion.div>
       {/* Add ReactTooltip components */}
       <ReactTooltip id={Tooltips.nextjs.id} place="top" effect="solid" />
@@ -179,7 +179,7 @@ const SecondTechsGroup = () => {
         data-tooltip-id={Tooltips.java.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.java.content}
       >
-        <BsFiletypeJava className="text-4xl text-fuchsia-500" />
+        <BsFiletypeJava className="text-5xl text-fuchsia-500" />
       </motion.div>
       <motion.div
         variants={secondIconVariants(3)}
@@ -189,7 +189,7 @@ const SecondTechsGroup = () => {
         data-tooltip-id={Tooltips.spring.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.spring.content}
       >
-        <SiSpring className="text-4xl text-green-500" />
+        <SiSpring className="text-5xl text-green-500" />
       </motion.div>
       <motion.div
         variants={secondIconVariants(2)}
@@ -199,7 +199,7 @@ const SecondTechsGroup = () => {
         data-tooltip-id={Tooltips.tailwind.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.tailwind.content}
       >
-        <RiTailwindCssLine className="text-4xl text-cyan-500" />
+        <RiTailwindCssLine className="text-5xl text-cyan-500" />
       </motion.div>
       <motion.div
         variants={secondIconVariants(5)}
@@ -209,7 +209,7 @@ const SecondTechsGroup = () => {
         data-tooltip-id={Tooltips.springboot.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.springboot.content}
       >
-        <SiSpringboot className="text-4xl text-white-500" />
+        <SiSpringboot className="text-5xl text-white-500" />
       </motion.div>
       <motion.div
         variants={secondIconVariants(6)}
@@ -219,7 +219,7 @@ const SecondTechsGroup = () => {
         data-tooltip-id={Tooltips.docker.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.docker.content}
       >
-        <SiDocker className="text-4xl text-pink-500" />
+        <SiDocker className="text-5xl text-pink-500" />
       </motion.div>
       <motion.div
         variants={secondIconVariants(4)}
@@ -229,7 +229,7 @@ const SecondTechsGroup = () => {
         data-tooltip-id={Tooltips.kubernetes.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.kubernetes.content}
       >
-        <SiKubernetes className="text-4xl text-sky-400" />
+        <SiKubernetes className="text-5xl text-sky-400" />
       </motion.div>
       <motion.div
         variants={iconVariants(2)}
@@ -239,7 +239,7 @@ const SecondTechsGroup = () => {
         data-tooltip-id={Tooltips.redis.id} // Set the id for the tooltip
         data-tooltip-content={Tooltips.redis.content}
       >
-        <DiRedis className="text-4xl text-red-700" />
+        <DiRedis className="text-5xl text-red-700" />
       </motion.div>
       {/* Add ReactTooltip components */}
       <ReactTooltip id={Tooltips.java.id} place="top" effect="solid" />
@@ -260,7 +260,7 @@ const Technologies = () => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5 }}
-        className="my-20 text-center text-4xl"
+        className="my-20 text-center text-5xl"
       >
         Technologies
       </motion.h2>
