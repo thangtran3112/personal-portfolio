@@ -27,15 +27,17 @@ const page = () => {
             <TabsContent value="front">
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
-                  if (project.category === "frontEnd") {
+                  if (project.frontEnd) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
                           url={project.url}
                           title={project.title}
-                          category={project.category}
+                          frontEnd={project.frontEnd}
+                          backEnd={project.backEnd}
                           des={project.des}
                           git={project.git}
+                          link={project.link}
                         />
                       </div>
                     );
@@ -47,15 +49,17 @@ const page = () => {
             <TabsContent value="back">
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
-                  if (project.category === "backEnd") {
+                  if (project.backEnd) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
                           url={project.url}
                           title={project.title}
-                          category={project.category}
+                          frontEnd={project.frontEnd}
+                          backEnd={project.backEnd}
                           des={project.des}
                           git={project.git}
+                          link={project.link}
                         />
                       </div>
                     );
@@ -67,15 +71,17 @@ const page = () => {
             <TabsContent value="full">
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
-                  if (project.category === "fullStack") {
+                  if (project.backEnd && project.frontEnd) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
                           url={project.url}
                           title={project.title}
-                          category={project.category}
+                          frontEnd={project.frontEnd}
+                          backEnd={project.backEnd}
                           des={project.des}
                           git={project.git}
+                          link={project.link}
                         />
                       </div>
                     );

@@ -48,12 +48,12 @@ const Hero = () => {
                 <MoveRight size={20} />
               </a>
             </Button>
-            <Button
+            {/* <Button
               className="shadow-xl bg-black hover:bg-[#222] text-white"
               onClick={downloadHandler}
             >
               Download CV
-            </Button>
+            </Button> */}
             <Button
               className="shadow-xl bg-black hover:bg-[#222] text-white"
               asChild
