@@ -118,7 +118,7 @@ export const WORKDATA = [
     backEnd: true,
     des: "React SPA, Redux, PostgresSQL, AWS Cloudfront, and Supabase.",
     git: "https://github.com/thangtran3112",
-    link: "https:cabin.thangtrandev.net",
+    link: "https://cabin.thangtrandev.net",
   },
 ];
 
