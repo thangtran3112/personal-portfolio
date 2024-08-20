@@ -4,8 +4,6 @@ import { CircleCheckBig, GraduationCap, Play } from "lucide-react";
 import Accordion from "./Accordion";
 import { EDUCATION, CERITIFCATES } from "@/constants/data";
 import LanguagesProgress from "./LanguagesProgress";
-import { FaAws } from "react-icons/fa6";
-import Badge from "./Badge";
 
 const About = () => {
   return (
@@ -29,10 +27,10 @@ const About = () => {
         </div>
         {/* right */}
         <div className="flex-1 mx-auto xl:mx-0">
-          <Tabs defaultValue="education">
+          <Tabs defaultValue="intro">
             <TabsList className="w-full grid grid-cols-3 max-w-[511px] border dark:border-secondary mx-auto xl:mx-0">
-              <TabsTrigger value="education">Education</TabsTrigger>
               <TabsTrigger value="intro">About Me</TabsTrigger>
+              <TabsTrigger value="education">Education</TabsTrigger>
               <TabsTrigger value="skills">Skills</TabsTrigger>
             </TabsList>
             {/* tabs content */}

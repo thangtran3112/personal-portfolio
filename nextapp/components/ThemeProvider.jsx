@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { ThemeProvider as NextThemeProvider } from "next-themes"
+import { ThemeProvider as NextThemeProvider } from "next-themes";
 
-const ThemeProvider = ({children, ...props}) => {
+const ThemeProvider = ({ children, ...props }) => {
   return (
-    <NextThemeProvider {...props}>
-        {children}
+    <NextThemeProvider {...props} prefers-color-scheme="dark">
+      {children}
     </NextThemeProvider>
-  )
-}
+  );
+};
 
-export default ThemeProvider
+export default ThemeProvider;
