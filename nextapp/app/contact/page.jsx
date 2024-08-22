@@ -26,7 +26,7 @@ const page = () => {
               <span>
                 <PhoneCall size={20} />
               </span>
-              :<span>+1 (587) 438-7712</span>
+              :<span>+1 (425) 390-2078</span>
             </div>
             <div className="flex gap-x-3">
               <span>

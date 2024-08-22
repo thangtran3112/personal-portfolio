@@ -1,5 +1,4 @@
-import { Paintbrush, Layers, FileJson, Cloud, Cloudy } from "lucide-react";
-import { RiReactjsLine } from "react-icons/ri";
+import { Paintbrush, FileJson, Cloudy } from "lucide-react";
 
 export const LINKS = [
   {
@@ -177,6 +176,7 @@ export const SOCIALS_LINKS = {
 
 export const RESUME = {
   title: "Resume",
-  oneDrive: "https://1drv.ms/b/s!ApP82c8MU2XKkock6HuvrYABYLn-DA?e=sLe5Xf",
+  oneDrive:
+    "https://drive.google.com/file/d/1ldEOnI_5czX4ZI8mIrVh26QlVYPi7pA_/view?usp=sharing",
   downloadable: "http://thangtrandev.net/resume.pdf",
 };

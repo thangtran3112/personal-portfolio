@@ -20,6 +20,7 @@ import { BsFiletypeJava } from "react-icons/bs";
 import { SiSpring, SiSpringboot } from "react-icons/si";
 import { RESUME, SOCIALS_LINKS } from "@/constants/data";
 import { download } from "@/lib/utils";
+import Link from "next/link";
 
 const downloadHandler = (reactMouseEvent) => {
   reactMouseEvent.preventDefault();
@@ -43,10 +44,14 @@ const Hero = () => {
           </p>
           <div className="mt-6 flex gap-4">
             <Button className="gap-x-2 shadow-xl" asChild>
-              <a href={SOCIALS_LINKS.Linkedin}>
+              <Link href="/contact">
                 Connect me
                 <MoveRight size={20} />
-              </a>
+              </Link>
+              {/* <a href={SOCIALS_LINKS.Linkedin}>
+                Connect me
+                <MoveRight size={20} />
+              </a> */}
             </Button>
             {/* <Button
               className="shadow-xl bg-black hover:bg-[#222] text-white"
