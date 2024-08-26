@@ -1,20 +1,31 @@
-'use client'
-import React from 'react';
-import { motion } from 'framer-motion';
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
 
 const LanguagesProgress = () => {
   const languages = [
-    { language: 'MongoDB', proficiency: 70, bgColor: '#61DAFB' },
-    { language: 'Express', proficiency: 65, bgColor: '#68A063' },
-    { language: 'React', proficiency: 75, bgColor: '#edf3d8' },
-    { language: 'Node.js', proficiency: 85, bgColor: '#61DAFB' },
-    { language: 'Next.js', proficiency: 70, bgColor: '#ffabe7' },
-    { language: 'JavaScript', proficiency: 80, bgColor: '#2965F1' },
+    { language: "AWS", proficiency: 90, bgColor: "#9816f5" },
+    { language: "MongoDB", proficiency: 70, bgColor: "#fb6661" },
+    { language: "Postgres", proficiency: 70, bgColor: "#fb6661" },
+    { language: "Dynamo", proficiency: 70, bgColor: "#fb6661" },
+    { language: "Redis", proficiency: 50, bgColor: "#fb6661" },
+    { language: "Express", proficiency: 70, bgColor: "#e92ba4" },
+    { language: "React", proficiency: 80, bgColor: "#e92ba4" },
+    { language: "Node.js", proficiency: 90, bgColor: "#e92ba4" },
+    { language: "Next.js", proficiency: 70, bgColor: "#e92ba4" },
+    { language: "Nest.js", proficiency: 80, bgColor: "#e92ba4" },
+    { language: "Typescript", proficiency: 80, bgColor: "#e92ba4" },
+    { language: "Java", proficiency: 70, bgColor: "#18cf12" },
+    { language: "SpringBoot", proficiency: 70, bgColor: "#18cf12" },
+    { language: "Docker", proficiency: 70, bgColor: "#1c7cf2" },
+    { language: "K8s", proficiency: 60, bgColor: "#1c7cf2" },
   ];
 
   return (
     <div className="max-w-lg">
-      <h4 className="bold-20 mb-4 uppercase">Languages / Frameworks Proficiency</h4>
+      <h4 className="bold-20 mb-4 uppercase">
+        Languages / Frameworks Proficiency
+      </h4>
       <div className="flexStart flex-wrap">
         {languages.map((lang, index) => (
           <CircularProgress
@@ -30,7 +41,7 @@ const LanguagesProgress = () => {
 };
 
 const CircularProgress = ({ language, proficiency, bgColor }) => {
-  const radius = 20; // Radius of the circle
+  const radius = 18; // Radius of the circle
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference * (1 - proficiency / 100);
 

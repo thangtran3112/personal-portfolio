@@ -1,6 +1,6 @@
 "use client";
 import { RiReactjsLine, RiTailwindCssLine } from "react-icons/ri";
-import { TbBrandMongodb, TbBrandNextjs } from "react-icons/tb";
+import { TbBrandNextjs } from "react-icons/tb";
 import {
   SiDocker,
   SiKubernetes,
@@ -10,7 +10,7 @@ import {
   SiSpring,
   SiSpringboot,
 } from "react-icons/si";
-import { DiMongodb, DiRedis } from "react-icons/di";
+import { DiRedis } from "react-icons/di";
 import { FaAws, FaNodeJs } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { motion } from "framer-motion";
@@ -260,7 +260,7 @@ const Technologies = () => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5 }}
-        className="my-20 text-center text-5xl"
+        className="my-20 text-center text-4xl"
       >
         Technologies
       </motion.h2>

@@ -19,7 +19,7 @@ export const ACCORDION = [
   {
     question: "Who are you and what do you do?",
     answer:
-      "I'm Thang, with a passion for full-stack applications using modern technologies. I can architect, design and implement all parts of a complex web application.",
+      "I'm Toby, with a passion for full-stack applications using modern technologies. I can architect, design and implement all parts of a complex web application.",
   },
   {
     question: "Which technologies you are familar with ?",

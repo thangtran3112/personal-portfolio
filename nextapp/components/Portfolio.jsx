@@ -8,6 +8,7 @@ import PfolioCard from "./PfolioCard";
 import { WORKDATA } from "@/constants/data";
 import { SOCIALS_LINKS } from "@/constants/data";
 import { GitHubLink } from "./SocialIcons";
+import Link from "next/link";
 
 const Work = () => {
   return (
@@ -20,7 +21,12 @@ const Work = () => {
             Personal Projects
           </span>
           <h3 className="h3 font-extrabold flexCenter gap-3 lg:gap-4 pr-2">
-            My Portfolios
+            <Link
+              href="/portfolio"
+              className="text-white hover:-translate-y-1 hover:underline hover:text-sky-300 transition-all duration-500"
+            >
+              My Portfolios
+            </Link>
             <GitHubLink fullUrl={SOCIALS_LINKS.Github} />
           </h3>
         </div>

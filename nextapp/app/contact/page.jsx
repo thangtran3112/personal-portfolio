@@ -20,7 +20,7 @@ const page = () => {
               <span>
                 <User2 size={20} />
               </span>
-              :<span>Thang Tran</span>
+              :<span>Toby (Thang) Tran</span>
             </div>
             <div className="flex gap-x-3">
               <span>

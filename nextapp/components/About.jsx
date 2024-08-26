@@ -10,7 +10,7 @@ const About = () => {
     <section className="max-padd-container py-16 xl:py-28">
       {/* title */}
       <div className="pb-10 text-center xl:text-start font-bold">
-        <span className="text-primary uppercase">Meet Thang Tran</span>
+        <span className="text-primary uppercase">Meet Toby (Thang) Tran</span>
         <h3 className="h3 font-extrabold">About me</h3>
       </div>
       {/* container */}
@@ -37,7 +37,7 @@ const About = () => {
             <div className="pt-12 xl:pt-3 pl-3">
               <TabsContent value="intro">
                 <h4 className="bold-20 uppercase pb-1">
-                  Hello! My Name Is Thang Tran
+                  Hello! My Name Is Toby (Thang) Tran
                 </h4>
                 <p className="max-w-md">
                   Fullstack software engineer with 10+ years of experience in
