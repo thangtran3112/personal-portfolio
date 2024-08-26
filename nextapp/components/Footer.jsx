@@ -9,7 +9,7 @@ const Footer = () => {
         <SocialIcons />
         <hr className="h-[1px] w-2/3 my-3" />
         <div className="text-white">
-          2024 &copy; Thang Tran | All rights reserved.
+          2024 &copy; Toby Tran | All rights reserved.
         </div>
       </div>
     </section>

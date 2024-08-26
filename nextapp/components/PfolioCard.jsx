@@ -77,7 +77,7 @@ const PfolioCard = ({ url, title, frontEnd, backEnd, des, git, link }) => {
         <CardTitle className="mb-2 flex gap-3 lg:gap-4 items-center -mt-1">
           <Link
             href={link}
-            className="text-blue-500 hover:-translate-y-1 hover:underline transition-all duration-500"
+            className="text-blue-500 hover:-translate-y-1 hover:underline hover:text-sky-300 transition-all duration-500"
           >
             {title}
           </Link>
