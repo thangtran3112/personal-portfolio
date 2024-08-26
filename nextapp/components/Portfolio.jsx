@@ -23,7 +23,7 @@ const Work = () => {
           <h3 className="h3 font-extrabold flexCenter gap-3 lg:gap-4 pr-2">
             <Link
               href="/portfolio"
-              className="text-white hover:-translate-y-1 hover:underline hover:text-sky-300 transition-all duration-500"
+              className="hover:-translate-y-1 hover:underline hover:text-sky-500 transition-all duration-500"
             >
               My Portfolios
             </Link>

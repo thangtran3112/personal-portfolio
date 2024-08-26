@@ -130,22 +130,22 @@ export const TESTIMONIAL = [
     desc: "Developed and fixed defects for In-Service-Software-Update feature of Cisco Router Operating System.",
   },
   {
-    title: "Replicon",
-    profession: "Fullstack Software Engineer, 04/2014 - 02/2022",
-    URL: "/replicon-logo.jpg",
-    desc: "Developed AWS applications for time-attendance tracking, timeoff management, scheduling, project management, compliance payroll, and more.",
-  },
-  {
-    title: "Nortal U.S",
-    profession: "Senior Fullstack Consultant, 09/2022 - Present",
-    URL: "/nortal-logo.jpg",
-    desc: "Worked on internal Amazon projects, mainly on global Amazon Facilities, Buildings, Devices management applications. Also worked on Backend development for TMobile prepaid public APIs.",
-  },
-  {
     title: "Mastercard",
     profession: "Senior Software Developer in Test, 05/2022 - 08/2022",
     URL: "/mastercard-logo.jpg",
     desc: "Working on both development and testing of file transfer and credit card dispute microservices",
+  },
+  {
+    title: "Nortal U.S",
+    profession: "Senior Fullstack Engineer, 09/2022 - Present",
+    URL: "/nortal-logo.jpg",
+    desc: "Worked on internal Amazon projects, mainly on global Amazon Facilities, Buildings, Devices management applications. Also worked on Backend development for TMobile prepaid public APIs.",
+  },
+  {
+    title: "Replicon",
+    profession: "Fullstack Software Engineer, 04/2014 - 02/2022",
+    URL: "/replicon-logo.jpg",
+    desc: "Developed AWS applications for time-attendance tracking, timeoff management, scheduling, project management, compliance payroll, and more.",
   },
   {
     title: "Pason Inc.",
