@@ -47,24 +47,21 @@ const Work = () => {
               clickable: true,
             }}
             modules={[Pagination]}
-            className="h-[422px] sm:h-[477px] mt-10"
+            className="h-[450px] sm:h-[500px] mt-10"
           >
             {WORKDATA.map((project, i) => {
-              if (project.frontEnd) {
-                return (
-                  <SwiperSlide key={i} className="flexCenter">
-                    <PfolioCard
-                      url={project.url}
-                      title={project.title}
-                      frontEnd={project.frontEnd}
-                      backEnd={project.backEnd}
-                      des={project.des}
-                      git={project.git}
-                      link={project.link}
-                    />
-                  </SwiperSlide>
-                );
-              }
+              return (
+                <SwiperSlide key={i} className="flexCenter">
+                  <PfolioCard
+                    url={project.url}
+                    title={project.title}
+                    categories={project.categories}
+                    des={project.des}
+                    git={project.git}
+                    link={project.link}
+                  />
+                </SwiperSlide>
+              );
             })}
           </Swiper>
         </div>

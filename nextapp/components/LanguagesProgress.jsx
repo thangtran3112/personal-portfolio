@@ -8,7 +8,7 @@ const LanguagesProgress = () => {
     { language: "MongoDB", proficiency: 70, bgColor: "#fb6661" },
     { language: "Postgres", proficiency: 70, bgColor: "#fb6661" },
     { language: "Dynamo", proficiency: 70, bgColor: "#fb6661" },
-    { language: "Redis", proficiency: 50, bgColor: "#fb6661" },
+    { language: "Python", proficiency: 70, bgColor: "#1c7cf2" },
     { language: "Express", proficiency: 70, bgColor: "#e92ba4" },
     { language: "React", proficiency: 80, bgColor: "#e92ba4" },
     { language: "Node.js", proficiency: 90, bgColor: "#e92ba4" },

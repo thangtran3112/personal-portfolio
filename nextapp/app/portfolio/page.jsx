@@ -18,8 +18,8 @@ const page = () => {
         <Tabs defaultValue="front">
           <TabsList className="w-full grid grid-cols-3 max-w-[511px] border dark:border-secondary mx-auto bg-white dark:bg-transparent">
             <TabsTrigger value="front">FrontEnd</TabsTrigger>
-            <TabsTrigger value="back">BackEnd</TabsTrigger>
             <TabsTrigger value="full">FullStack</TabsTrigger>
+            <TabsTrigger value="ai">GenAI/ML</TabsTrigger>
           </TabsList>
           {/* tabs content */}
           <div className="pt-12 xl:pt-3 pl-3">
@@ -27,36 +27,13 @@ const page = () => {
             <TabsContent value="front">
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
-                  if (project.frontEnd) {
+                  if (project.categories.includes("Frontend")) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
                           url={project.url}
                           title={project.title}
-                          frontEnd={project.frontEnd}
-                          backEnd={project.backEnd}
-                          des={project.des}
-                          git={project.git}
-                          link={project.link}
-                        />
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-            </TabsContent>
-            {/* backend */}
-            <TabsContent value="back">
-              <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-                {WORKDATA.map((project, i) => {
-                  if (project.backEnd) {
-                    return (
-                      <div key={i} className="flexCenter">
-                        <PfolioCard
-                          url={project.url}
-                          title={project.title}
-                          frontEnd={project.frontEnd}
-                          backEnd={project.backEnd}
+                          categories={project.categories}
                           des={project.des}
                           git={project.git}
                           link={project.link}
@@ -71,14 +48,40 @@ const page = () => {
             <TabsContent value="full">
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
-                  if (project.backEnd && project.frontEnd) {
+                  if (
+                    project.categories.includes("Frontend") &&
+                    project.categories.includes("Backend")
+                  ) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
                           url={project.url}
                           title={project.title}
-                          frontEnd={project.frontEnd}
-                          backEnd={project.backEnd}
+                          categories={project.categories}
+                          des={project.des}
+                          git={project.git}
+                          link={project.link}
+                        />
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </TabsContent>
+            {/* AI or Machine Learning */}
+            <TabsContent value="ai">
+              <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+                {WORKDATA.map((project, i) => {
+                  if (
+                    project.categories.includes("Machine Learning") ||
+                    project.categories.includes("AI")
+                  ) {
+                    return (
+                      <div key={i} className="flexCenter">
+                        <PfolioCard
+                          url={project.url}
+                          title={project.title}
+                          categories={project.categories}
                           des={project.des}
                           git={project.git}
                           link={project.link}

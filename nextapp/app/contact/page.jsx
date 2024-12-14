@@ -4,6 +4,10 @@ import { User2, MailIcon, HomeIcon, PhoneCall, MoveRight } from "lucide-react";
 const page = () => {
   return (
     <section className="max-padd-container py-16 xl:py-24 bg-[#fdf3fb] dark:bg-transparent">
+      <div className="text-muted-foreground mb-4 text-center">
+        Server action for contact form is not done yet 😔. Please email me
+        directly. Thank you!
+      </div>
       <div className="flex flex-col xl:flex-row gap-12">
         {/* title */}
         <div className="flex flex-col flex-1 ">

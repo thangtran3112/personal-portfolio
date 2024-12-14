@@ -4,21 +4,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { MoveRight } from "lucide-react";
 import SocialIcons from "./SocialIcons";
-import Badge from "./Badge";
-import { FaAws, FaDocker, FaReact } from "react-icons/fa6";
-import {
-  SiNextdotjs,
-  SiPostgresql,
-  SiMongodb,
-  SiMysql,
-  SiAmazondynamodb,
-  SiKubernetes,
-  SiAwslambda,
-  SiNestjs,
-} from "react-icons/si";
-import { BsFiletypeJava } from "react-icons/bs";
-import { SiSpring, SiSpringboot } from "react-icons/si";
-import { RESUME, SOCIALS_LINKS } from "@/constants/data";
+import { RESUME } from "@/constants/data";
 import { download } from "@/lib/utils";
 import Link from "next/link";
 
@@ -63,7 +49,7 @@ const Hero = () => {
               className="shadow-xl bg-black hover:bg-[#222] text-white"
               asChild
             >
-              <a href={RESUME.oneDrive}>View CV</a>
+              <a href={RESUME.googleDrive}>View CV</a>
             </Button>
           </div>
           <div className="mt-20">
@@ -72,74 +58,14 @@ const Hero = () => {
         </div>
         {/* right */}
         <div className="flex flex-1 relative z-10 top-12">
-          <div className="">
-            <Image
-              src={"/bg.jpg"}
-              height={488}
-              width={488}
-              priority
-              alt=""
-              className="drop-shadow-sm"
-            />
-          </div>
-          <div className="hidden xl:flex">
-            <Badge
-              containerStyles={"absolute top-[58%] -left-[5%]"}
-              icon={<FaAws />}
-            />
-            <Badge
-              containerStyles={"absolute top-[70%] -left-[2%]"}
-              icon={<SiAwslambda />}
-            />
-            <Badge
-              containerStyles={"absolute -top-5 right-[38%]"}
-              icon={<FaReact />}
-            />
-            <Badge
-              containerStyles={"absolute -top-8 right-[50%]"}
-              icon={<SiNestjs />}
-            />
-            <Badge
-              containerStyles={"absolute -top-5 right-[62%]"}
-              icon={<SiNextdotjs />}
-            />
-            <Badge
-              containerStyles={"absolute top-[14%] left-0"}
-              icon={<SiMongodb />}
-            />
-            <Badge
-              containerStyles={"absolute top-[26%] -left-[3%]"}
-              icon={<SiAmazondynamodb />}
-            />
-            <Badge
-              containerStyles={"absolute bottom-[32%] xl:left-[460px]"}
-              icon={<FaDocker />}
-            />
-            <Badge
-              containerStyles={"absolute bottom-[20%] xl:left-[440px]"}
-              icon={<SiKubernetes />}
-            />
-            <Badge
-              containerStyles={"absolute top-[14%] xl:left-[430px]"}
-              icon={<SiPostgresql />}
-            />
-            <Badge
-              containerStyles={"absolute top-[26%] xl:left-[450px]"}
-              icon={<SiMysql />}
-            />
-            <Badge
-              containerStyles={"absolute -bottom-5 right-[62%]"}
-              icon={<BsFiletypeJava />}
-            />
-            <Badge
-              containerStyles={"absolute -bottom-5 right-[38%]"}
-              icon={<SiSpring />}
-            />
-            <Badge
-              containerStyles={"absolute -bottom-8 right-[50%]"}
-              icon={<SiSpringboot />}
-            />
-          </div>
+          <Image
+            src={"/bg.jpg"}
+            height={488}
+            width={488}
+            priority
+            alt=""
+            className="drop-shadow-sm"
+          />
         </div>
       </div>
     </section>

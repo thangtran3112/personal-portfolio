@@ -1,4 +1,4 @@
-import { Paintbrush, FileJson, Cloudy } from "lucide-react";
+import { Paintbrush, FileJson, Cloudy, BotMessageSquare } from "lucide-react";
 
 export const LINKS = [
   {
@@ -30,7 +30,7 @@ export const ACCORDION = [
     question:
       "Which languages, and technologies, that you want to learn in the future?",
     answer:
-      "Python, AWS SageMaker for Machine Learning, Golang for Backend, Columnar DB such as Amazon Redshift or Google BigQuery for big data analytics.",
+      "Pytorch and LLM training, Golang for Backend, Columnar DB such as Amazon Redshift or Google BigQuery for big data analytics.",
   },
 ];
 
@@ -62,16 +62,16 @@ export const CERITIFCATES = [
 // SERVICES SECTION
 export const SERVICES = [
   {
-    icon: <Paintbrush size={44} strokeWidth={0.8} />,
-    title: "FrontEnd Development",
-    description:
-      "Worked on various Enterprise and Open-Source FE projects with React, Redux, CSS, Tailwind, NextJS, Material UI, AWS Cloudscape and recently Shadcn UI. Experiences in both SPA, SSR and ISG deployments with AWS.",
-  },
-  {
     icon: <FileJson size={44} strokeWidth={0.8} />,
     title: "BackEnd Development",
     description:
       "Worked on both single-dockerized BE, multi-containers BE, serverless and microservices architectures. Experiences in design and deploy services with Docker, Kubernetes, and AWS.",
+  },
+  {
+    icon: <BotMessageSquare size={44} strokeWidth={0.8} />,
+    title: "Machine Learning & AI",
+    description:
+      "Ability to work with Python, Tensorflow models, Scikit-learn training, Keras, Pytorch, and AWS SageMaker & AWS Bedrock for Machine Learning/AI projects. Familar with NLP (Word2Vec, OHE, etc) and ML algorithms (LSTM, GRU, RNN, CNN, Encoder-Decoder, Transformer).",
   },
   {
     icon: <Cloudy size={44} strokeWidth={0.8} />,
@@ -79,24 +79,44 @@ export const SERVICES = [
     description:
       "Years of working with AWS and infrastructure-as-code. AWS-Certified and familar with various AWS services, such as EC2, S3, RDS, Lambda, Cloudfront, Cognito, API Gateway, AppSync, CDK, SDK, ElasticCache, DynamoDB, ECS, EKS, Fargate, etc.",
   },
+  {
+    icon: <Paintbrush size={44} strokeWidth={0.8} />,
+    title: "FrontEnd Development",
+    description:
+      "Worked on various Enterprise and Open-Source FE projects with React, Redux, CSS, Tailwind, NextJS, Material UI, AWS Cloudscape and recently Shadcn UI. Experiences in both SPA, SSR and ISG deployments with AWS.",
+  },
 ];
 
 // Work data
 export const WORKDATA = [
   {
-    title: "Fullstack Marketplace",
+    title: "Multi-tenancy Marketplace",
     url: "/img1.png",
-    frontEnd: true,
-    backEnd: true,
-    des: "Express,NextJS, Payload, TRPC, MongoDB, Tailwind CSS, and Shadcn UI.",
+    categories: ["Backend", "Frontend", "AWS"],
+    des: "NextJS, Payload CMS Backend with ExpressJS, TRPC, MongoDB, Tailwind CSS, and Shadcn UI.",
     git: "https://github.com/thangtran3112/next-marketplace",
     link: "https://market.thangtrandev.net",
   },
   {
-    title: "Airbnb Fullstack Clone",
+    title: "Fashionify Ecommerce Prototype",
+    url: "/fashionify.jpg",
+    categories: ["Backend", "Frontend", "AWS"],
+    des: "Admin Dashboard + Shopping, MERN, API Gateway, AWS Lambda, S3, Cognito, and Cloudfront.",
+    git: "https://github.com/thangtran3112/ecom/tree/main/fashionify",
+    link: "https://fashionify.thangtrandev.net",
+  },
+  {
+    title: "Word Embedding- Simple RNN Training",
+    url: "/simple-rnn.png",
+    categories: ["NLP", "Artificial Neural Network", "Machine Learning"],
+    des: "Simple Recurrent Neural Network on sentiment prediction. Optimizable with LSTM, GRU, and Transformer.",
+    git: "https://github.com/thangtran3112/machine-learning/tree/main/simple_rnn_imdb",
+    link: "https://movie-review-sentiment-rnn.streamlit.app",
+  },
+  {
+    title: "Airbnb Fullstack",
     url: "/img2.png",
-    frontEnd: true,
-    backEnd: true,
+    categories: ["Backend", "Frontend", "AWS"],
     des: "NextJs, Prisma, PostgresSQL, Tailwind CSS, AWS Lambda and Shadcn UI.",
     git: "https://github.com/thangtran3112/next-airbnb",
     link: "https://airnext.thangtrandev.net",
@@ -104,17 +124,23 @@ export const WORKDATA = [
   {
     title: "Gongcha Kelowna Website",
     url: "/img3.png",
-    frontEnd: true,
-    backEnd: false,
-    des: "Gatsby, React Website with Contentful CMS and AWS Amplify Deployment",
+    categories: ["Frontend", "AWS"],
+    des: "Prototype Website for Gongcha. Gatsby, React, Contentful CMS and AWS Amplify",
     git: "https://github.com/thangtran3112/gongcha",
-    link: "https://main.d3m8y7jmltb7ny.amplifyapp.com",
+    link: "https://gongcha.thangtrandev.net",
+  },
+  {
+    title: "Sushi Ichiban Calgary",
+    url: "/sushi.png",
+    categories: ["Frontend", "AWS"],
+    des: "Website for Sushi shop in Canada. Gatsby, React, Contentful CMS and AWS Amplify",
+    git: "https://github.com/thangtran3112/sushi",
+    link: "https://sushiichibanmacleod.com",
   },
   {
     title: "Cabins Booking Website",
     url: "/img4.png",
-    frontEnd: true,
-    backEnd: true,
+    categories: ["Frontend", "AWS"],
     des: "React SPA, Redux, PostgresSQL, AWS Cloudfront, and Supabase.",
     git: "https://github.com/thangtran3112",
     link: "https://cabin.thangtrandev.net",
@@ -176,7 +202,7 @@ export const SOCIALS_LINKS = {
 
 export const RESUME = {
   title: "Resume",
-  oneDrive:
-    "https://drive.google.com/file/d/1ldEOnI_5czX4ZI8mIrVh26QlVYPi7pA_/view?usp=sharing",
+  googleDrive:
+    "https://drive.google.com/file/d/1UOlG7czUo-rZOd1RFJcylQEGCX86h6Ct/view?usp=sharing",
   downloadable: "http://thangtrandev.net/resume.pdf",
 };

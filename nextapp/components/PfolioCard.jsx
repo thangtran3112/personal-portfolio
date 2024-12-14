@@ -12,21 +12,8 @@ import { FaEye } from "react-icons/fa6";
 import { MdOutlineZoomOutMap } from "react-icons/md";
 import { Badge } from "./ui/badge";
 import { GitHubLink } from "./SocialIcons";
-import { LinkIcon } from "lucide-react";
 
-const getCategories = (frontEnd, backEnd) => {
-  const category = [];
-  if (frontEnd) {
-    category.push("FrontEnd");
-  }
-  if (backEnd) {
-    category.push("BackEnd");
-  }
-  return category;
-};
-
-const PfolioCard = ({ url, title, frontEnd, backEnd, des, git, link }) => {
-  const categories = getCategories(frontEnd, backEnd);
+const PfolioCard = ({ url, title, categories, des, git, link }) => {
   return (
     <Card className="relative group rounded-xl overflow-hidden">
       <CardHeader>

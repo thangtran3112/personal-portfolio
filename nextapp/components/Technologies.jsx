@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { RiReactjsLine, RiTailwindCssLine } from "react-icons/ri";
 import { TbBrandNextjs } from "react-icons/tb";
 import {
@@ -9,14 +10,19 @@ import {
   SiNestjs,
   SiSpring,
   SiSpringboot,
+  SiTensorflow,
+  SiNumpy,
+  SiPandas,
+  SiExpress,
+  SiKeras,
+  SiScikitlearn,
 } from "react-icons/si";
-import { DiRedis } from "react-icons/di";
 import { FaAws, FaNodeJs } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
-import { motion } from "framer-motion";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { BsFiletypeJava } from "react-icons/bs";
+import { TbBrandPython } from "react-icons/tb";
 
 const iconVariants = (duration) => ({
   initial: { y: -10 },
@@ -47,19 +53,25 @@ const secondIconVariants = (duration) => ({
 const Tooltips = {
   nextjs: { id: "nextjs", content: "Next.js" },
   mongodb: { id: "mongodb", content: "MongoDB" },
-  redis: { id: "redis", content: "Redis" },
+  tensorflow: { id: "tensorflow", content: "Tensorflow" },
   aws: { id: "aws", content: "AWS" },
   nodejs: { id: "nodejs", content: "Node.js" },
   postgresql: { id: "postgresql", content: "PostgreSQL" },
   reactjs: { id: "reactjs", content: "React.js" },
   nestjs: { id: "nestjs", content: "Nest.js" },
   mysql: { id: "mysql", content: "MySQL" },
+  python: { id: "python", content: "Python" },
   java: { id: "java", content: "Java" },
   spring: { id: "spring", content: "Spring" },
   tailwind: { id: "tailwind", content: "Tailwind CSS" },
   springboot: { id: "springboot", content: "Spring Boot" },
   docker: { id: "docker", content: "Docker" },
   kubernetes: { id: "kubernetes", content: "Kubernetes" },
+  numpy: { id: "numpy", content: "NumPy" },
+  pandas: { id: "pandas", content: "Pandas" },
+  keras: { id: "keras", content: "Keras" },
+  scikit: { id: "scikit", content: "Scikit-learn" },
+  expressjs: { id: "expressjs", content: "ExpressJS" },
 };
 const FirstTechsGroup = () => {
   return (
@@ -90,16 +102,6 @@ const FirstTechsGroup = () => {
         <TbBrandNextjs className="text-5xl" />
       </motion.div>
       <motion.div
-        variants={iconVariants(5)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-neutral-800 p-4"
-        data-tooltip-id={Tooltips.aws.id} // Set the id for the tooltip
-        data-tooltip-content={Tooltips.aws.content}
-      >
-        <FaAws className="text-5xl text-amber-500" />
-      </motion.div>
-      <motion.div
         variants={iconVariants(6)}
         initial="initial"
         animate="animate"
@@ -114,10 +116,10 @@ const FirstTechsGroup = () => {
         initial="initial"
         animate="animate"
         className="rounded-2xl border-4 border-neutral-800 p-4"
-        data-tooltip-id={Tooltips.postgresql.id} // Set the id for the tooltip
-        data-tooltip-content={Tooltips.postgresql.content}
+        data-tooltip-id={Tooltips.expressjs.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.expressjs.content}
       >
-        <BiLogoPostgresql className="text-5xl text-sky-700" />
+        <SiExpress className="text-5xl text-cyan-500" />
       </motion.div>
       <motion.div
         variants={iconVariants(2)}
@@ -128,6 +130,16 @@ const FirstTechsGroup = () => {
         data-tooltip-content={Tooltips.nestjs.content}
       >
         <SiNestjs className="text-5xl text-rose-500" />
+      </motion.div>
+      <motion.div
+        variants={iconVariants(4)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.postgresql.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.postgresql.content}
+      >
+        <BiLogoPostgresql className="text-5xl text-sky-700" />
       </motion.div>
       <motion.div
         variants={iconVariants(3)}
@@ -150,8 +162,7 @@ const FirstTechsGroup = () => {
         <SiMongodb className="text-5xl text-green-500" />
       </motion.div>
       {/* Add ReactTooltip components */}
-      <ReactTooltip id={Tooltips.nextjs.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.aws.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.tensorflow.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.mongodb.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.reactjs.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.postgresql.id} place="top" effect="solid" />
@@ -159,6 +170,7 @@ const FirstTechsGroup = () => {
       <ReactTooltip id={Tooltips.nodejs.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.nestjs.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.mysql.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.expressjs.id} place="top" effect="solid" />
     </motion.div>
   );
 };
@@ -171,6 +183,16 @@ const SecondTechsGroup = () => {
       transition={{ duration: 1.5 }}
       className="flex flex-wrap items-center justify-center gap-4"
     >
+      <motion.div
+        variants={secondIconVariants(3.5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.python.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.python.content}
+      >
+        <TbBrandPython className="text-5xl text-blue-500" />
+      </motion.div>
       <motion.div
         variants={secondIconVariants(2.5)}
         initial="initial"
@@ -232,23 +254,92 @@ const SecondTechsGroup = () => {
         <SiKubernetes className="text-5xl text-sky-400" />
       </motion.div>
       <motion.div
-        variants={iconVariants(2)}
+        variants={iconVariants(5)}
         initial="initial"
         animate="animate"
         className="rounded-2xl border-4 border-neutral-800 p-4"
-        data-tooltip-id={Tooltips.redis.id} // Set the id for the tooltip
-        data-tooltip-content={Tooltips.redis.content}
+        data-tooltip-id={Tooltips.aws.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.aws.content}
       >
-        <DiRedis className="text-5xl text-red-700" />
+        <FaAws className="text-5xl text-amber-500" />
       </motion.div>
       {/* Add ReactTooltip components */}
+      <ReactTooltip id={Tooltips.python.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.java.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.spring.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.tailwind.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.springboot.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.docker.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.kubernetes.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.redis.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.aws.id} place="top" effect="solid" />
+    </motion.div>
+  );
+};
+
+const ThirdTechsGroup = () => {
+  return (
+    <motion.div
+      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: -100 }}
+      transition={{ duration: 1.5 }}
+      className="flex flex-wrap items-center justify-center gap-4"
+    >
+      <motion.div
+        variants={secondIconVariants(3.5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.numpy.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.numpy.content}
+      >
+        <SiNumpy className="text-5xl text-green-500" />
+      </motion.div>
+      <motion.div
+        variants={secondIconVariants(5.5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.pandas.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.pandas.content}
+      >
+        <SiPandas className="text-5xl text-slate-300" />
+      </motion.div>
+      <motion.div
+        variants={iconVariants(4.5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.tensorflow.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.tensorflow.content}
+      >
+        <SiTensorflow className="text-5xl text-pink-500" />
+      </motion.div>
+      <motion.div
+        variants={iconVariants(2.5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.keras.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.keras.content}
+      >
+        <SiKeras className="text-5xl text-red-500" />
+      </motion.div>
+      <motion.div
+        variants={iconVariants(3.5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.scikit.id} // Set the id for the tooltip
+        data-tooltip-content={Tooltips.scikit.content}
+      >
+        <SiScikitlearn className="text-5xl text-orange-500" />
+      </motion.div>
+      {/* Add ReactTooltip components */}
+      <ReactTooltip id={Tooltips.numpy.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.pandas.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.tensorflow.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.keras.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.scikit.id} place="top" effect="solid" />
     </motion.div>
   );
 };
@@ -265,8 +356,9 @@ const Technologies = () => {
         Technologies
       </motion.h2>
       <div className="flex flex-col flex-wrap justify-center gap-8">
-        <FirstTechsGroup />
         <SecondTechsGroup />
+        <FirstTechsGroup />
+        <ThirdTechsGroup />
       </div>
     </div>
   );
