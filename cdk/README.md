@@ -1,3 +1,5 @@
+# Deploying NextJS Portfolio Website on AWS Lambda
+
 ## Solution Architectures
 
 - Since the next server is already running in Lambda (not Lambda@Edge), we have the option to authenticate requests directly inside `middleware.ts`
@@ -11,7 +13,6 @@
 npm install
 npm install -g pnpm
 npx cdk bootstrap
-npx cdk synth
 npx cdk deploy
 ```
 
@@ -20,7 +21,7 @@ npx cdk deploy
 - View in Local: http://localhost:3000/api
 - View in Cloudfront: https:<CloudfrontURL>/api
 
-# Template for app-router nextjs project, without tailwind
+## Template for app-router nextjs project, without tailwind
 
 - Created with `npx create-next-app@latest`
 - All assets must be put into `public/static` for proper Cloudfront redirects
