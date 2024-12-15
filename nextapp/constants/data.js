@@ -87,20 +87,30 @@ export const SERVICES = [
   },
 ];
 
+export const Category = {
+  NLP: { id: "NLP", content: "Natural Language Processing" },
+  ANN: { id: "ANN", content: "Artificial Neural Network" },
+  ML: { id: "ML", content: "Machine Learning" },
+  Backend: { id: "Backend", content: "Backend" },
+  Frontend: { id: "Frontend", content: "Frontend" },
+  AWS: { id: "AWS", content: "Amazon Web Services" },
+  GenAI: { id: "GenAI", content: "Generative AI" },
+};
+
 // Work data
 export const WORKDATA = [
   {
     title: "Multi-tenancy Marketplace",
     url: "/img1.png",
-    categories: ["Backend", "Frontend", "AWS"],
+    categories: [Category.Backend, Category.Frontend, Category.AWS],
     des: "NextJS, Payload CMS Backend with ExpressJS, TRPC, MongoDB, Tailwind CSS, and Shadcn UI.",
     git: "https://github.com/thangtran3112/next-marketplace",
     link: "https://market.thangtrandev.net",
   },
   {
-    title: "Fashionify Ecommerce Prototype",
+    title: "Fashion Ecom Prototype",
     url: "/fashionify.jpg",
-    categories: ["Backend", "Frontend", "AWS"],
+    categories: [Category.Backend, Category.Frontend, Category.AWS],
     des: "Admin Dashboard + Shopping, MERN, API Gateway, AWS Lambda, S3, Cognito, and Cloudfront.",
     git: "https://github.com/thangtran3112/ecom/tree/main/fashionify",
     link: "https://fashionify.thangtrandev.net",
@@ -108,7 +118,7 @@ export const WORKDATA = [
   {
     title: "Word Embedding- Simple RNN Training",
     url: "/simple-rnn.png",
-    categories: ["NLP", "Artificial Neural Network", "Machine Learning"],
+    categories: [Category.ML, Category.NLP],
     des: "Simple Recurrent Neural Network on sentiment prediction. Optimizable with LSTM, GRU, and Transformer.",
     git: "https://github.com/thangtran3112/machine-learning/tree/main/simple_rnn_imdb",
     link: "https://movie-review-sentiment-rnn.streamlit.app",
@@ -116,7 +126,7 @@ export const WORKDATA = [
   {
     title: "Airbnb Fullstack",
     url: "/img2.png",
-    categories: ["Backend", "Frontend", "AWS"],
+    categories: [Category.Backend, Category.Frontend, Category.AWS],
     des: "NextJs, Prisma, PostgresSQL, Tailwind CSS, AWS Lambda and Shadcn UI.",
     git: "https://github.com/thangtran3112/next-airbnb",
     link: "https://airnext.thangtrandev.net",
@@ -124,7 +134,7 @@ export const WORKDATA = [
   {
     title: "Gongcha Kelowna Website",
     url: "/img3.png",
-    categories: ["Frontend", "AWS"],
+    categories: [Category.Frontend, Category.AWS],
     des: "Prototype Website for Gongcha. Gatsby, React, Contentful CMS and AWS Amplify",
     git: "https://github.com/thangtran3112/gongcha",
     link: "https://gongcha.thangtrandev.net",
@@ -132,15 +142,15 @@ export const WORKDATA = [
   {
     title: "Sushi Ichiban Calgary",
     url: "/sushi.png",
-    categories: ["Frontend", "AWS"],
-    des: "Website for Sushi shop in Canada. Gatsby, React, Contentful CMS and AWS Amplify",
+    categories: [Category.Frontend, Category.AWS],
+    des: "Website for Sushi shop in Canada. Gatsby, React, Material UI, and AWS Cloudfront",
     git: "https://github.com/thangtran3112/sushi",
     link: "https://sushiichibanmacleod.com",
   },
   {
     title: "Cabins Booking Website",
     url: "/img4.png",
-    categories: ["Frontend", "AWS"],
+    categories: [Category.Frontend, Category.AWS],
     des: "React SPA, Redux, PostgresSQL, AWS Cloudfront, and Supabase.",
     git: "https://github.com/thangtran3112",
     link: "https://cabin.thangtrandev.net",

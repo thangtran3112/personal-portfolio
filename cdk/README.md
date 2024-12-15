@@ -16,6 +16,8 @@ npx cdk bootstrap
 npx cdk deploy
 ```
 
+- IMPORTANT: Redeploying will erase custom domain name. Rehooking custom domain name to Cloudfront is needed
+
 ## The deployment will also have a <baseUrl>/api route
 
 - View in Local: http://localhost:3000/api

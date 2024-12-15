@@ -12,17 +12,42 @@ import { FaEye } from "react-icons/fa6";
 import { MdOutlineZoomOutMap } from "react-icons/md";
 import { Badge } from "./ui/badge";
 import { GitHubLink } from "./SocialIcons";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import { Category } from "@/constants/data";
+
+const PorfolioTooltips = () => {
+  return (
+    <>
+      {/* Add ReactTooltip components */}
+      <ReactTooltip id={Category.Backend.id} place="top" effect="solid" />
+      <ReactTooltip id={Category.Frontend.id} place="top" effect="solid" />
+      <ReactTooltip id={Category.AWS.id} place="top" effect="solid" />
+      <ReactTooltip id={Category.ML.id} place="top" effect="solid" />
+      <ReactTooltip id={Category.GenAI.id} place="top" effect="solid" />
+      <ReactTooltip id={Category.ANN.id} place="top" effect="solid" />
+      <ReactTooltip id={Category.NLP.id} place="top" effect="solid" />
+    </>
+  );
+};
 
 const PfolioCard = ({ url, title, categories, des, git, link }) => {
   return (
     <Card className="relative group rounded-xl overflow-hidden">
+      <PorfolioTooltips />
       <CardHeader>
         <div className="flex flex-row gap-3 justify-start">
-          {categories.map((category) => (
-            <Badge key={category} className="mb-3 capitalize">
-              {category}
-            </Badge>
-          ))}
+          {categories.map((category) => {
+            return (
+              <Badge
+                key={category.id}
+                className="mb-3 capitalize"
+                data-tooltip-id={category.id} // Set the id for the tooltip
+                data-tooltip-content={category.content}
+              >
+                {category.id}
+              </Badge>
+            );
+          })}
         </div>
         <div className="rounded-lg !inline-flex relative overflow-hidden">
           <Image

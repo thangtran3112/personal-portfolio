@@ -1,5 +1,5 @@
 "use client";
-import { WORKDATA } from "@/constants/data";
+import { Category, WORKDATA } from "@/constants/data";
 import PfolioCard from "@/components/PfolioCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -27,7 +27,7 @@ const page = () => {
             <TabsContent value="front">
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
-                  if (project.categories.includes("Frontend")) {
+                  if (project.categories.includes(Category.Frontend)) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
@@ -49,8 +49,8 @@ const page = () => {
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
                   if (
-                    project.categories.includes("Frontend") &&
-                    project.categories.includes("Backend")
+                    project.categories.includes(Category.Backend) &&
+                    project.categories.includes(Category.Frontend)
                   ) {
                     return (
                       <div key={i} className="flexCenter">
@@ -73,8 +73,9 @@ const page = () => {
               <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
                   if (
-                    project.categories.includes("Machine Learning") ||
-                    project.categories.includes("AI")
+                    project.categories.includes(Category.ANN) ||
+                    project.categories.includes(Category.ML) ||
+                    project.categories.includes(Category.NLP)
                   ) {
                     return (
                       <div key={i} className="flexCenter">
