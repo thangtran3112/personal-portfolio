@@ -30,7 +30,7 @@ export const ACCORDION = [
     question:
       "Which languages, and technologies, that you want to learn in the future?",
     answer:
-      "Pytorch and LLM training, Golang for Backend, Columnar DB such as Amazon Redshift or Google BigQuery for big data analytics.",
+      "LLM training, Golang for Backend, Columnar DB such as Amazon Redshift or Google BigQuery for big data analytics.",
   },
 ];
 
@@ -71,7 +71,7 @@ export const SERVICES = [
     icon: <BotMessageSquare size={44} strokeWidth={0.8} />,
     title: "Machine Learning & AI",
     description:
-      "Ability to work with Python, Tensorflow models, Scikit-learn training, Keras, Pytorch, and AWS SageMaker & AWS Bedrock for Machine Learning/AI projects. Familar with NLP (Word2Vec, OHE, etc) and ML algorithms (LSTM, GRU, RNN, CNN, Encoder-Decoder, Transformer).",
+      "Ability to work with Python, Numpy, Pytorch/Tensorflow, Scikit-learn training, Keras, and AWS SageMaker & AWS Bedrock for Machine Learning/AI projects.",
   },
   {
     icon: <Cloudy size={44} strokeWidth={0.8} />,

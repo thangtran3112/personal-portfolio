@@ -29,7 +29,7 @@ const Companies = () => {
             <h3 className="h3 font-extrabold">Companies That I Worked At</h3>
           </div>
           {/* Projects */}
-          <div className="mx-auto max-w-[70%] xl:max-w-full">
+          <div className="mx-auto max-w-[95%] xl:max-w-[100%]">
             <Swiper
               breakpoints={{
                 640: {
@@ -49,7 +49,7 @@ const Companies = () => {
                 clickable: true,
               }}
               modules={[Pagination]}
-              className="h-[399px] mt-10"
+              className="h-[450px] mt-10"
             >
               {TESTIMONIAL.map((testimonial) => (
                 <SwiperSlide key={testimonial.desc}>
@@ -85,7 +85,7 @@ const TestimonialItem = ({ desc, title, profession, URL }) => {
         <CardTitle>{title}</CardTitle>
         <p className="mb-4">{profession}</p>
         <span className="absolute top-0 right-4 z-10 opacity-50 dark:opacity-20">
-          <Image src={"/sparkle.svg"} alt="" height={62} width={62} />
+          <Image src="/sparkle.svg" alt="" height={62} width={62} />
         </span>
         <CardDescription className="line-clamp-4">"{desc}"</CardDescription>
       </CardContent>
