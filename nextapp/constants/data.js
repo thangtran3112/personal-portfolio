@@ -124,6 +124,14 @@ export const WORKDATA = [
     link: "https://movie-review-sentiment-rnn.streamlit.app",
   },
   {
+    title: "Deepseek Chat with SQL and MongoDB",
+    url: "/sqlChat.png",
+    categories: [Category.ML, Category.GenAI],
+    des: "Connect to any SQL database or MongoDB on cloud and start conversation with your data.",
+    git: "https://github.com/thangtran3112/gen-ai/tree/main/langchain/10-Chat-SQL",
+    link: "https://movie-review-sentiment-rnn.streamlit.app",
+  },
+  {
     title: "Airbnb Fullstack",
     url: "/img2.png",
     categories: [Category.Backend, Category.Frontend, Category.AWS],
@@ -213,6 +221,6 @@ export const SOCIALS_LINKS = {
 export const RESUME = {
   title: "Resume",
   googleDrive:
-    "https://drive.google.com/file/d/1UOlG7czUo-rZOd1RFJcylQEGCX86h6Ct/view?usp=sharing",
+    "https://drive.google.com/file/d/14BtNDwGiIlkOSTE3GnAjmj_Np7U3xxCQ/view?usp=sharing",
   downloadable: "http://thangtrandev.net/resume.pdf",
 };
