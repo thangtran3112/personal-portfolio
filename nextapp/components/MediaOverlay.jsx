@@ -116,59 +116,62 @@ const MediaOverlay = ({ media, initialIndex = 0, onClose }) => {
         </div>
       )}
 
-      {/* Left chevron */}
-      {media.length > 1 && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            goPrev();
-          }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/40 transition-colors duration-200"
-          aria-label="Previous"
-        >
-          <ChevronLeft className="w-8 h-8 text-white" />
-        </button>
-      )}
-
-      {/* Right chevron */}
-      {media.length > 1 && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            goNext();
-          }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/40 transition-colors duration-200"
-          aria-label="Next"
-        >
-          <ChevronRight className="w-8 h-8 text-white" />
-        </button>
-      )}
-
-      {/* Media content */}
+      {/* Navigation & Media Container */}
       <div
-        className="max-w-[90vw] max-h-[85vh] flex items-center justify-center"
+        className="flex items-center justify-center gap-4 md:gap-8 max-w-[95vw] max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {isVideo ? (
-          <video
-            key={currentIndex}
-            controls
-            autoPlay
-            className="max-w-full max-h-[85vh] rounded-lg shadow-2xl"
+        {/* Left chevron */}
+        {media.length > 1 && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goPrev();
+            }}
+            className="flex-shrink-0 z-10 p-2 rounded-full bg-white/20 hover:bg-white/40 transition-colors duration-200"
+            aria-label="Previous"
           >
-            <source src={currentItem.video} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        ) : (
-          <Image
-            key={currentIndex}
-            src={currentItem}
-            alt=""
-            width={900}
-            height={600}
-            className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
-            style={{ width: "auto", height: "auto" }}
-          />
+            <ChevronLeft className="w-8 h-8 text-white" />
+          </button>
+        )}
+
+        {/* Media content */}
+        <div className="flex items-center justify-center">
+          {isVideo ? (
+            <video
+              key={currentIndex}
+              controls
+              autoPlay
+              className="w-[65vw] md:w-[55vw] xl:w-[45vw] h-[85vh] rounded-lg shadow-2xl object-contain bg-black/50"
+            >
+              <source src={currentItem.video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <div className="w-[65vw] md:w-[55vw] xl:w-[45vw] h-[85vh] relative flex items-center justify-center bg-black/50 rounded-lg shadow-2xl">
+              <Image
+                key={currentIndex}
+                src={currentItem}
+                alt=""
+                fill
+                className="object-contain p-2"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Right chevron */}
+        {media.length > 1 && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goNext();
+            }}
+            className="flex-shrink-0 z-10 p-2 rounded-full bg-white/20 hover:bg-white/40 transition-colors duration-200"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-8 h-8 text-white" />
+          </button>
         )}
       </div>
     </div>
