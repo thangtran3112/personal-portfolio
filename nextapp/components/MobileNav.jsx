@@ -16,6 +16,7 @@ const MobileNav = () => {
             <div className='flex flex-col gap-y-28 '>
               <Logo />
               <Nav
+                navId="mobile"
                 containerStyles={'flex flex-col gap-y-8 capitalize bold-16'}
                 linkStyles={'relative'}
                 underlineStyles={'absolute left-0 top-full h-[2px] w-6 bg-primary rounded-full'}

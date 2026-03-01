@@ -102,6 +102,7 @@ export class AppRouterStack extends Stack {
       destinationBucket: siteBucket,
       distribution,
       distributionPaths: ["/*"],
+      memoryLimit: 1024,
     });
 
     new CfnOutput(this, "CloudFrontDistributionDomain", {

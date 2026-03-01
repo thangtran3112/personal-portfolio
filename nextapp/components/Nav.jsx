@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
-const Nav = ({ containerStyles, linkStyles, underlineStyles }) => {
+const Nav = ({ containerStyles, linkStyles, underlineStyles, navId }) => {
   const path = usePathname();
 
   return (
@@ -17,7 +17,7 @@ const Nav = ({ containerStyles, linkStyles, underlineStyles }) => {
               initial={{ y: "-100%" }}
               animate={{ y: 0 }}
               transition={{ type: "tween", duration: 0.2 }}
-              layoutId="underline"
+              layoutId={`underline-${navId}`}
               className={`${underlineStyles}`}
             ></motion.span>
           )}

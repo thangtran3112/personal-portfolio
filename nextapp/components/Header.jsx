@@ -11,13 +11,15 @@ const Header = () => {
   const [header, setHeader] = useState(false);
 
   useEffect(() => {
-    const scrollYPos = window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       window.scrollY > 50 ? setHeader(true) : setHeader(false);
-    });
+    };
+    
+    window.addEventListener("scroll", handleScroll);
 
     // remove event
-    return () => window.removeEventListener("scroll", scrollYPos);
-  });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
@@ -30,6 +32,7 @@ const Header = () => {
       {/* nav & btns */}
       <div className="flexCenter gap-x-8">
         <Nav
+          navId="desktop"
           containerStyles={"hidden xl:flex gap-x-12 capitalize bold-16"}
           linkStyles={"relative"}
           underlineStyles={
