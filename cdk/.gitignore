@@ -1,6 +1,9 @@
 *.d.ts
 node_modules
 
+# Environment variables (AWS credentials)
+.env
+
 # CDK asset staging directory
 .cdk.staging
 cdk.out

@@ -78,7 +78,7 @@ const TestimonialItem = ({ desc, title, profession, URL }) => {
           alt="user"
           height={77}
           width={77}
-          className="rounded-full mb-4 z-20"
+          className="rounded-full mb-4 z-20 bg-white p-1"
         />
       </CardHeader>
       <CardContent>

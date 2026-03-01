@@ -21,11 +21,11 @@ const Hero = () => {
         {/* left */}
         <div className="flex flex-1 flex-col pt-12 xl:pt-32">
           <h1 className="h1 !font-extrabold">
-            From Backend to Frontend, No SQL to SQL, and infrastructure as code.
+            From Agentic AI to Fullstack from ground up in AWS and GCP.
           </h1>
           <p>
             Explore my portfolio where creativity and functionality converge,
-            showcasing clean web development projects crafted with precision and
+            showcasing clean end-to-end fullstack and Agentic AI projects crafted with precision and
             scalable modern backends on various infrastructure setups.
           </p>
           <div className="mt-6 flex gap-4">

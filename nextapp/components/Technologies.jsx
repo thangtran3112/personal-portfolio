@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { RiReactjsLine, RiTailwindCssLine } from "react-icons/ri";
 import { TbBrandNextjs } from "react-icons/tb";
 import {
@@ -72,6 +73,9 @@ const Tooltips = {
   keras: { id: "keras", content: "Keras" },
   scikit: { id: "scikit", content: "Scikit-learn" },
   expressjs: { id: "expressjs", content: "ExpressJS" },
+  mcp: { id: "mcp", content: "Model Context Protocol (MCP)" },
+  googleadk: { id: "googleadk", content: "Google Agent Dev Kit (ADK)" },
+  langgraph: { id: "langgraph", content: "LangGraph" },
 };
 const FirstTechsGroup = () => {
   return (
@@ -284,6 +288,36 @@ const ThirdTechsGroup = () => {
       transition={{ duration: 1.5 }}
       className="flex flex-wrap items-center justify-center gap-4"
     >
+            <motion.div
+        variants={iconVariants(3)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.mcp.id}
+        data-tooltip-content={Tooltips.mcp.content}
+      >
+        <img src="/svg/mcp.svg" alt="MCP" width={48} height={48} style={{ filter: 'brightness(0) invert(1)' }} />
+      </motion.div>
+      <motion.div
+        variants={secondIconVariants(2.5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.googleadk.id}
+        data-tooltip-content={Tooltips.googleadk.content}
+      >
+        <img src="/svg/google-color.svg" alt="Google ADK" width={48} height={48} />
+      </motion.div>
+      <motion.div
+        variants={iconVariants(5)}
+        initial="initial"
+        animate="animate"
+        className="rounded-2xl border-4 border-neutral-800 p-4"
+        data-tooltip-id={Tooltips.langgraph.id}
+        data-tooltip-content={Tooltips.langgraph.content}
+      >
+        <img src="/svg/langgraph.svg" alt="LangGraph" width={48} height={48} style={{ filter: 'brightness(0) invert(1)' }} />
+      </motion.div>
       <motion.div
         variants={secondIconVariants(3.5)}
         initial="initial"
@@ -340,9 +374,19 @@ const ThirdTechsGroup = () => {
       <ReactTooltip id={Tooltips.tensorflow.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.keras.id} place="top" effect="solid" />
       <ReactTooltip id={Tooltips.scikit.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.mcp.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.googleadk.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.langgraph.id} place="top" effect="solid" />
     </motion.div>
   );
 };
+
+// Custom text-based icon component for AI tools without standard react-icons
+const CustomIcon = ({ text, className }) => (
+  <div className={`text-xl font-bold w-12 h-12 flex items-center justify-center ${className}`}>
+    {text}
+  </div>
+);
 
 const Technologies = () => {
   return (

@@ -7,13 +7,20 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { BiSolidLike } from "react-icons/bi";
-import { FaEye } from "react-icons/fa6";
-import { MdOutlineZoomOutMap } from "react-icons/md";
 import { Badge } from "./ui/badge";
 import { GitHubLink } from "./SocialIcons";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { Category } from "@/constants/data";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import { useState } from "react";
+import MediaOverlay, {
+  isVideoItem,
+  getDisplaySrc,
+  VideoThumbnail,
+} from "./MediaOverlay";
 
 const PorfolioTooltips = () => {
   return (
@@ -23,25 +30,33 @@ const PorfolioTooltips = () => {
       <ReactTooltip id={Category.Frontend.id} place="top" effect="solid" />
       <ReactTooltip id={Category.AWS.id} place="top" effect="solid" />
       <ReactTooltip id={Category.ML.id} place="top" effect="solid" />
-      <ReactTooltip id={Category.GenAI.id} place="top" effect="solid" />
+      <ReactTooltip id={Category.AgenticAI.id} place="top" effect="solid" />
       <ReactTooltip id={Category.ANN.id} place="top" effect="solid" />
       <ReactTooltip id={Category.NLP.id} place="top" effect="solid" />
     </>
   );
 };
 
-const PfolioCard = ({ url, title, categories, des, git, link }) => {
+const PfolioCard = ({ media, title, categories, des, git, link }) => {
+  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [overlayIndex, setOverlayIndex] = useState(0);
+
+  const openOverlay = (index) => {
+    setOverlayIndex(index);
+    setOverlayOpen(true);
+  };
+
   return (
     <Card className="relative group rounded-xl overflow-hidden">
       <PorfolioTooltips />
-      <CardHeader>
+      <CardHeader className="px-4 pt-6 pb-2">
         <div className="flex flex-row gap-3 justify-start">
           {categories.map((category) => {
             return (
               <Badge
                 key={category.id}
                 className="mb-3 capitalize"
-                data-tooltip-id={category.id} // Set the id for the tooltip
+                data-tooltip-id={category.id}
                 data-tooltip-content={category.content}
               >
                 {category.id}
@@ -49,39 +64,41 @@ const PfolioCard = ({ url, title, categories, des, git, link }) => {
             );
           })}
         </div>
-        <div className="rounded-lg !inline-flex relative overflow-hidden">
-          <Image
-            src={url}
-            alt=""
-            height={299}
-            width={444}
+        <div className="rounded-lg !inline-flex relative overflow-hidden group">
+          <Swiper
+            pagination={{ clickable: true }}
+            modules={[Pagination]}
             className="rounded-lg"
-          />
-          {/* overlay */}
-          <div className="absolute top-0 left-0 inset-0 bg-[#fdf3fb] dark:bg-background opacity-0 group-hover:opacity-100 transition-all duration-200 rounded-lg overflow-hidden"></div>
-          {/* icons */}
-          <div className="flexCenter gap-x-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-            <Link
-              href={"/portfolio"}
-              className="flexCenter gap-x-2 rounded-md px-1 ring-1 ring-primary text-primary"
-            >
-              <MdOutlineZoomOutMap />
-            </Link>
-            <Link
-              href={"/"}
-              className="flexCenter gap-x-2 rounded-md px-1 ring-1 ring-primary text-primary"
-            >
-              <BiSolidLike />
-              <p>112</p>
-            </Link>
-            <Link
-              href={"/"}
-              className="flexCenter gap-x-2 rounded-md px-1 ring-1 ring-primary text-primary"
-            >
-              <FaEye />
-              <p>222</p>
-            </Link>
-          </div>
+          >
+            {media?.map((item, index) => {
+              const isVideo = isVideoItem(item);
+              return (
+                <SwiperSlide key={index}>
+                  {isVideo ? (
+                    <VideoThumbnail
+                      item={item}
+                      width={444}
+                      height={299}
+                      onClick={() => openOverlay(index)}
+                    />
+                  ) : (
+                    <div
+                      className="cursor-pointer"
+                      onClick={() => openOverlay(index)}
+                    >
+                      <Image
+                        src={item}
+                        alt=""
+                        height={299}
+                        width={444}
+                        className="rounded-lg"
+                      />
+                    </div>
+                  )}
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </CardHeader>
       {/* info */}
@@ -97,6 +114,15 @@ const PfolioCard = ({ url, title, categories, des, git, link }) => {
         </CardTitle>
         <CardDescription>{des}</CardDescription>
       </CardContent>
+
+      {/* Overlay modal */}
+      {overlayOpen && (
+        <MediaOverlay
+          media={media}
+          initialIndex={overlayIndex}
+          onClose={() => setOverlayOpen(false)}
+        />
+      )}
     </Card>
   );
 };

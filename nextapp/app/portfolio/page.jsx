@@ -9,7 +9,7 @@ const page = () => {
       {/* title */}
       <div className="flex flex-col flexCenter">
         <span className="text-primary uppercase font-bold">
-          Personal Projects
+          Projects
         </span>
         <h3 className="h3 font-extrabold">My Portfolios</h3>
       </div>
@@ -18,20 +18,20 @@ const page = () => {
         <Tabs defaultValue="front">
           <TabsList className="w-full grid grid-cols-3 max-w-[511px] border dark:border-secondary mx-auto bg-white dark:bg-transparent">
             <TabsTrigger value="front">FrontEnd</TabsTrigger>
-            <TabsTrigger value="full">FullStack</TabsTrigger>
-            <TabsTrigger value="ai">GenAI/ML</TabsTrigger>
+            <TabsTrigger value="full">Backend</TabsTrigger>
+            <TabsTrigger value="ai">Agentic AI</TabsTrigger>
           </TabsList>
           {/* tabs content */}
           <div className="pt-12 xl:pt-3 pl-3">
             {/* frontend */}
             <TabsContent value="front">
-              <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
                   if (project.categories.includes(Category.Frontend)) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
-                          url={project.url}
+                          media={project.media}
                           title={project.title}
                           categories={project.categories}
                           des={project.des}
@@ -46,7 +46,7 @@ const page = () => {
             </TabsContent>
             {/* fullstack */}
             <TabsContent value="full">
-              <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
                   if (
                     project.categories.includes(Category.Backend) &&
@@ -55,7 +55,7 @@ const page = () => {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
-                          url={project.url}
+                          media={project.media}
                           title={project.title}
                           categories={project.categories}
                           des={project.des}
@@ -70,17 +70,18 @@ const page = () => {
             </TabsContent>
             {/* AI or Machine Learning */}
             <TabsContent value="ai">
-              <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                 {WORKDATA.map((project, i) => {
                   if (
                     project.categories.includes(Category.ANN) ||
                     project.categories.includes(Category.ML) ||
-                    project.categories.includes(Category.NLP)
+                    project.categories.includes(Category.NLP) ||
+                    project.categories.includes(Category.AgenticAI)
                   ) {
                     return (
                       <div key={i} className="flexCenter">
                         <PfolioCard
-                          url={project.url}
+                          media={project.media}
                           title={project.title}
                           categories={project.categories}
                           des={project.des}

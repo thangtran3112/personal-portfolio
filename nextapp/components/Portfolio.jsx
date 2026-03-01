@@ -16,7 +16,7 @@ const Work = () => {
       {/* title */}
       <div className="pb-12 text-center sm:text-start sm:ml-6">
         <span className="text-primary uppercase font-bold">
-          Personal Projects
+          Sample Projects
         </span>
         <h3 className="h3 font-extrabold flex flex-row justify-center sm:justify-start gap-4 items-center">
           <Link
@@ -57,7 +57,7 @@ const Work = () => {
               return (
                 <SwiperSlide key={i} className="flexCenter">
                   <PfolioCard
-                    url={project.url}
+                    media={project.media}
                     title={project.title}
                     categories={project.categories}
                     des={project.des}

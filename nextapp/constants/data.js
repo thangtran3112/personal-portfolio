@@ -1,4 +1,4 @@
-import { Paintbrush, FileJson, Cloudy, BotMessageSquare } from "lucide-react";
+import { Paintbrush, FileJson, Cloudy, BotMessageSquare, Cpu } from "lucide-react";
 
 export const LINKS = [
   {
@@ -65,25 +65,31 @@ export const SERVICES = [
     icon: <FileJson size={44} strokeWidth={0.8} />,
     title: "BackEnd Development",
     description:
-      "Worked on both single-dockerized BE, multi-containers BE, serverless and microservices architectures. Experiences in design and deploy services with Docker, Kubernetes, and AWS.",
+      "Enterprise experiences on both microservices and monolithic backend. Design and deploy backend services in NodeJS, Java Spring Boot, and FastAPI.",
   },
   {
-    icon: <BotMessageSquare size={44} strokeWidth={0.8} />,
-    title: "Machine Learning & AI",
+    icon: <Cpu size={44} strokeWidth={0.8} />,
+    title: "Agentic AI",
     description:
-      "Ability to work with Python, Numpy, Pytorch/Tensorflow, Scikit-learn training, Keras, and AWS SageMaker & AWS Bedrock for Machine Learning/AI projects.",
+      "Ecommerce analytic applications with Multi-agent system at Stackline with FastMCP, A2A, AWS Strands, Google ADK, Langfuse, AWS Bedrock and GCP Vertex.",
   },
   {
     icon: <Cloudy size={44} strokeWidth={0.8} />,
     title: "Cloud Computing",
     description:
-      "Years of working with AWS and infrastructure-as-code. AWS-Certified and familar with various AWS services, such as EC2, S3, RDS, Lambda, Cloudfront, Cognito, API Gateway, AppSync, CDK, SDK, ElasticCache, DynamoDB, ECS, EKS, Fargate, etc.",
+      "8+ Years of working with AWS along with various AWS services such as EC2, ECS, S3, RDS, Lambda, Cloudfront, Cognito, API Gateway, AppSync, CDK, SDK, Redis, DynamoDB, Aurora Bedrock, etc.",
+  },
+  {
+    icon: <BotMessageSquare size={44} strokeWidth={0.8} />,
+    title: "Machine Learning",
+    description:
+      "Ability to work with Python, Numpy, Pytorch/Tensorflow, Scikit-learn training, Keras, and AWS SageMaker & AWS Bedrock for Machine Learning projects.",
   },
   {
     icon: <Paintbrush size={44} strokeWidth={0.8} />,
     title: "FrontEnd Development",
     description:
-      "Worked on various Enterprise and Open-Source FE projects with React, Redux, CSS, Tailwind, NextJS, Material UI, AWS Cloudscape and recently Shadcn UI. Experiences in both SPA, SSR and ISG deployments with AWS.",
+      "6+ years of experience with React, NextJS, Redux, CSS, Tailwind, Material UI, AWS Cloudscape and Shadcn UI. Experiences in both Server Side and Client Side rendering.",
   },
 ];
 
@@ -94,6 +100,7 @@ export const Category = {
   Backend: { id: "Backend", content: "Backend" },
   Frontend: { id: "Frontend", content: "Frontend" },
   AWS: { id: "AWS", content: "Amazon Web Services" },
+  AgenticAI: { id: "Agentic AI", content: "Agentic AI" },
   GenAI: { id: "GenAI", content: "Generative AI" },
 };
 
@@ -101,15 +108,23 @@ export const Category = {
 export const WORKDATA = [
   {
     title: "Multi-tenancy Marketplace",
-    url: "/img1.png",
+    media: ["/marketplace/img1.png"],
     categories: [Category.Backend, Category.Frontend, Category.AWS],
     des: "NextJS, Payload CMS Backend with ExpressJS, TRPC, MongoDB, Tailwind CSS, and Shadcn UI.",
     git: "https://github.com/thangtran3112/next-marketplace",
     link: "https://market.thangtrandev.net",
   },
   {
+    title: "AI Intelligence Advisor",
+    media: ["/analytics/analytic-1.png", "/analytics/analytic-2.png", { video: "/analytics/ecom-analytics.mp4", thumbnail: "/analytics/analytic-2.png" }],
+    categories: [Category.AgenticAI, Category.AWS, Category.Frontend, Category.Backend],
+    des: "AI intelligence advisor with trends analytics, ads conversion, market share, brand traffics, and charts generation on AWS Strand Agent and MCP.",
+    git: "https://github.com/thangtran3112",
+    link: "#",
+  },
+  {
     title: "Fashion Ecom Prototype",
-    url: "/fashionify.jpg",
+    media: ["/fashionify/fashionify.jpg"],
     categories: [Category.Backend, Category.Frontend, Category.AWS],
     des: "Admin Dashboard + Shopping, MERN, API Gateway, AWS Lambda, S3, Cognito, and Cloudfront.",
     git: "https://github.com/thangtran3112/ecom/tree/main/fashionify",
@@ -117,7 +132,7 @@ export const WORKDATA = [
   },
   {
     title: "Word Embedding- Simple RNN Training",
-    url: "/simple-rnn.png",
+    media: ["/simple-rnn/simple-rnn.png"],
     categories: [Category.ML, Category.NLP],
     des: "Simple Recurrent Neural Network on sentiment prediction. Optimizable with LSTM, GRU, and Transformer.",
     git: "https://github.com/thangtran3112/machine-learning/tree/main/simple_rnn_imdb",
@@ -125,7 +140,7 @@ export const WORKDATA = [
   },
   {
     title: "Deepseek Chat with SQL and MongoDB",
-    url: "/sqlChat.png",
+    media: ["/sqlChat/sqlChat.png"],
     categories: [Category.ML, Category.GenAI],
     des: "Connect to any SQL database or MongoDB on cloud and start conversation with your data.",
     git: "https://github.com/thangtran3112/gen-ai/tree/main/langchain/10-Chat-SQL",
@@ -133,7 +148,7 @@ export const WORKDATA = [
   },
   {
     title: "Airbnb Fullstack",
-    url: "/img2.png",
+    media: ["/airbnb/img2.png"],
     categories: [Category.Backend, Category.Frontend, Category.AWS],
     des: "NextJs, Prisma, PostgresSQL, Tailwind CSS, AWS Lambda and Shadcn UI.",
     git: "https://github.com/thangtran3112/next-airbnb",
@@ -141,7 +156,7 @@ export const WORKDATA = [
   },
   {
     title: "Gongcha Kelowna Website",
-    url: "/img3.png",
+    media: ["/gongcha/img3.png"],
     categories: [Category.Frontend, Category.AWS],
     des: "Prototype Website for Gongcha. Gatsby, React, Contentful CMS and AWS Amplify",
     git: "https://github.com/thangtran3112/gongcha",
@@ -149,7 +164,7 @@ export const WORKDATA = [
   },
   {
     title: "Sushi Ichiban Calgary",
-    url: "/sushi.png",
+    media: ["/sushi/sushi.png"],
     categories: [Category.Frontend, Category.AWS],
     des: "Website for Sushi shop in Canada. Gatsby, React, Material UI, and AWS Cloudfront",
     git: "https://github.com/thangtran3112/sushi",
@@ -157,7 +172,7 @@ export const WORKDATA = [
   },
   {
     title: "Cabins Booking Website",
-    url: "/img4.png",
+    media: ["/cabins/img4.png"],
     categories: [Category.Frontend, Category.AWS],
     des: "React SPA, Redux, PostgresSQL, AWS Cloudfront, and Supabase.",
     git: "https://github.com/thangtran3112",
@@ -167,6 +182,12 @@ export const WORKDATA = [
 
 // TESTIMONIAL SECTION
 export const TESTIMONIAL = [
+  {
+    title: "Stackline",
+    profession: "Software Engineer, 02/2025 - Present",
+    URL: "/stackline-logo.png",
+    desc: "Working on data analytics platform for ecommerce market share, advertising, and analytics for brands and retailers. Building Agentic AI apps for product profile generation and intelligence advisors.",
+  },
   {
     title: "Cisco Systems",
     profession: "Software Engineer Intern, 04/2012 - 08/2012",
@@ -181,13 +202,13 @@ export const TESTIMONIAL = [
   },
   {
     title: "Nortal U.S",
-    profession: "Senior Fullstack Engineer, 09/2022 - Present",
+    profession: "Senior Fullstack Engineer, 09/2022 - 02/2025",
     URL: "/nortal-logo.jpg",
     desc: "Worked on internal Amazon projects, mainly on global Amazon Facilities, Buildings, Devices management applications. Also worked on Backend development for TMobile prepaid public APIs.",
   },
   {
-    title: "Replicon",
-    profession: "Fullstack Software Engineer, 04/2014 - 02/2022",
+    title: "Replicon (now Deltek)",
+    profession: "Software Engineer, 04/2014 - 02/2022",
     URL: "/replicon-logo.jpg",
     desc: "Developed AWS applications for time-attendance tracking, timeoff management, scheduling, project management, compliance payroll, and more.",
   },
@@ -221,6 +242,6 @@ export const SOCIALS_LINKS = {
 export const RESUME = {
   title: "Resume",
   googleDrive:
-    "https://drive.google.com/file/d/14BtNDwGiIlkOSTE3GnAjmj_Np7U3xxCQ/view?usp=sharing",
-  downloadable: "http://thangtrandev.net/resume.pdf",
+    "https://drive.google.com/file/d/1jN7vrgkiWwwhClQM7KdI4SF5Hy8YXLPN/view?usp=sharing",
+  downloadable: "https://drive.google.com/file/d/1jN7vrgkiWwwhClQM7KdI4SF5Hy8YXLPN/view?usp=sharing",
 };
