@@ -45,7 +45,7 @@ const About = () => {
                   E2E tests.
                 </p>
                 {/* accordion */}
-                <Accordion sliceCount={(0, 3)} />
+                <Accordion sliceCount={3} />
               </TabsContent>
               {/* education */}
               <TabsContent value="education">

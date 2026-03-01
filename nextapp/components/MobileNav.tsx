@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from './ui/sheet'
 import { AlignJustify } from 'lucide-react'
 import Logo from './Logo'
 import Nav from './Nav'
@@ -12,6 +12,8 @@ const MobileNav = () => {
         <AlignJustify className='cursor-pointer' />
       </SheetTrigger>
       <SheetContent>
+          <SheetTitle className="sr-only">Navigation</SheetTitle>
+          <SheetDescription className="sr-only">Mobile navigation menu</SheetDescription>
           <div className='flex flex-col items-center justify-between h-full py-8'>
             <div className='flex flex-col gap-y-28 '>
               <Logo />

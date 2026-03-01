@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { RiReactjsLine, RiTailwindCssLine } from "react-icons/ri";
 import { TbBrandNextjs } from "react-icons/tb";
@@ -25,7 +25,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 import { BsFiletypeJava } from "react-icons/bs";
 import { TbBrandPython } from "react-icons/tb";
 
-const iconVariants = (duration) => ({
+const iconVariants = (duration: number): Variants => ({
   initial: { y: -10 },
   animate: {
     y: [10, -10],
@@ -33,12 +33,12 @@ const iconVariants = (duration) => ({
       duration: duration,
       ease: "linear",
       repeat: Infinity,
-      repeatType: "reverse",
+      repeatType: "reverse" as const,
     },
   },
 });
 
-const secondIconVariants = (duration) => ({
+const secondIconVariants = (duration: number): Variants => ({
   initial: { y: -10 },
   animate: {
     y: [-10, 10],
@@ -46,7 +46,7 @@ const secondIconVariants = (duration) => ({
       duration: duration,
       ease: "linear",
       repeat: Infinity,
-      repeatType: "reverse",
+      repeatType: "reverse" as const,
     },
   },
 });
@@ -166,15 +166,15 @@ const FirstTechsGroup = () => {
         <SiMongodb className="text-5xl text-green-500" />
       </motion.div>
       {/* Add ReactTooltip components */}
-      <ReactTooltip id={Tooltips.tensorflow.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.mongodb.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.reactjs.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.postgresql.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.nextjs.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.nodejs.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.nestjs.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.mysql.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.expressjs.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.tensorflow.id} place="top" />
+      <ReactTooltip id={Tooltips.mongodb.id} place="top" />
+      <ReactTooltip id={Tooltips.reactjs.id} place="top" />
+      <ReactTooltip id={Tooltips.postgresql.id} place="top" />
+      <ReactTooltip id={Tooltips.nextjs.id} place="top" />
+      <ReactTooltip id={Tooltips.nodejs.id} place="top" />
+      <ReactTooltip id={Tooltips.nestjs.id} place="top" />
+      <ReactTooltip id={Tooltips.mysql.id} place="top" />
+      <ReactTooltip id={Tooltips.expressjs.id} place="top" />
     </motion.div>
   );
 };
@@ -268,14 +268,14 @@ const SecondTechsGroup = () => {
         <FaAws className="text-5xl text-amber-500" />
       </motion.div>
       {/* Add ReactTooltip components */}
-      <ReactTooltip id={Tooltips.python.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.java.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.spring.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.tailwind.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.springboot.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.docker.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.kubernetes.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.aws.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.python.id} place="top" />
+      <ReactTooltip id={Tooltips.java.id} place="top" />
+      <ReactTooltip id={Tooltips.spring.id} place="top" />
+      <ReactTooltip id={Tooltips.tailwind.id} place="top" />
+      <ReactTooltip id={Tooltips.springboot.id} place="top" />
+      <ReactTooltip id={Tooltips.docker.id} place="top" />
+      <ReactTooltip id={Tooltips.kubernetes.id} place="top" />
+      <ReactTooltip id={Tooltips.aws.id} place="top" />
     </motion.div>
   );
 };
@@ -288,7 +288,7 @@ const ThirdTechsGroup = () => {
       transition={{ duration: 1.5 }}
       className="flex flex-wrap items-center justify-center gap-4"
     >
-            <motion.div
+      <motion.div
         variants={iconVariants(3)}
         initial="initial"
         animate="animate"
@@ -296,7 +296,7 @@ const ThirdTechsGroup = () => {
         data-tooltip-id={Tooltips.mcp.id}
         data-tooltip-content={Tooltips.mcp.content}
       >
-        <img src="/svg/mcp.svg" alt="MCP" width={48} height={48} style={{ filter: 'brightness(0) invert(1)' }} />
+        <img src="/svg/mcp.svg" alt="MCP" width={48} height={48} className="dark:invert" />
       </motion.div>
       <motion.div
         variants={secondIconVariants(2.5)}
@@ -316,7 +316,7 @@ const ThirdTechsGroup = () => {
         data-tooltip-id={Tooltips.langgraph.id}
         data-tooltip-content={Tooltips.langgraph.content}
       >
-        <img src="/svg/langgraph.svg" alt="LangGraph" width={48} height={48} style={{ filter: 'brightness(0) invert(1)' }} />
+        <img src="/svg/langgraph.svg" alt="LangGraph" width={48} height={48} className="dark:invert" />
       </motion.div>
       <motion.div
         variants={secondIconVariants(3.5)}
@@ -369,14 +369,14 @@ const ThirdTechsGroup = () => {
         <SiScikitlearn className="text-5xl text-orange-500" />
       </motion.div>
       {/* Add ReactTooltip components */}
-      <ReactTooltip id={Tooltips.numpy.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.pandas.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.tensorflow.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.keras.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.scikit.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.mcp.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.googleadk.id} place="top" effect="solid" />
-      <ReactTooltip id={Tooltips.langgraph.id} place="top" effect="solid" />
+      <ReactTooltip id={Tooltips.mcp.id} place="top" />
+      <ReactTooltip id={Tooltips.googleadk.id} place="top" />
+      <ReactTooltip id={Tooltips.langgraph.id} place="top" />
+      <ReactTooltip id={Tooltips.numpy.id} place="top" />
+      <ReactTooltip id={Tooltips.pandas.id} place="top" />
+      <ReactTooltip id={Tooltips.tensorflow.id} place="top" />
+      <ReactTooltip id={Tooltips.keras.id} place="top" />
+      <ReactTooltip id={Tooltips.scikit.id} place="top" />
     </motion.div>
   );
 };

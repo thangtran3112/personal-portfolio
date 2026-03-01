@@ -31,16 +31,17 @@ export const getVideoSrc = (item) => {
 /**
  * VideoThumbnail: renders a thumbnail image with a play button overlay.
  */
-export const VideoThumbnail = ({ item, width, height, className, onClick }) => {
+export const VideoThumbnail = ({ item, width, height, className, onClick, fill }: { item: any, width?: number, height?: number, className?: string, onClick?: () => void, fill?: boolean }) => {
   const thumbnailSrc = getDisplaySrc(item);
   return (
     <div className={`relative cursor-pointer ${className || ""}`} onClick={onClick}>
       <Image
         src={thumbnailSrc}
         alt=""
-        width={width}
-        height={height}
-        className="rounded-lg"
+        width={fill ? undefined : width}
+        height={fill ? undefined : height}
+        fill={fill}
+        className={`rounded-lg ${fill ? 'object-cover' : ''}`}
       />
       {/* Play button overlay */}
       <div className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-lg hover:bg-black/40 transition-colors duration-200">

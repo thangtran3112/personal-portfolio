@@ -4,11 +4,11 @@ import { FaLock, FaLockOpen } from 'react-icons/fa6';
 import { Collapse } from "react-collapse"
 import { ACCORDION } from '@/constants/data';
 
-const Accordion = ({sliceCount}) => {
+const Accordion = ({ sliceCount }: { sliceCount?: number }) => {
 
-    const [open, setOpen] = useState(null);
+    const [open, setOpen] = useState<number | null>(null);
 
-    const toggle = (index) => {
+    const toggle = (index: number) => {
         if (open === index) {
             return setOpen(null);
         }
@@ -22,7 +22,7 @@ const Accordion = ({sliceCount}) => {
     return (
         <div>
             <div className='pt-4 max-w-[800px]'>
-                {slicedAccordion.slice({sliceCount}).map((item, index) => (
+                {slicedAccordion.map((item, index) => (
                     <AccordionItem
                         key={index}
                         open={index === open}
@@ -36,7 +36,7 @@ const Accordion = ({sliceCount}) => {
     )
 }
 
-const AccordionItem = ({ open, toggle, question, answer }) => {
+const AccordionItem = ({ open, toggle, question, answer }: { open: boolean; toggle: () => void; question: string; answer: string }) => {
     return (
         <div className=''>
             <div onClick={toggle} className={'px-3 py-2 medium-16 flex items-center gap-x-4 cursor-pointer transition-all duration-300 mb-2'}>

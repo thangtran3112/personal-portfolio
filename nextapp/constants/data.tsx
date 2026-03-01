@@ -107,28 +107,28 @@ export const Category = {
 // Work data
 export const WORKDATA = [
   {
+    title: "AI Intelligence Advisor",
+    media: ["/analytics/analytic-1.png", "/analytics/analytic-2.png", { video: "/analytics/ecom-analytics.mp4", thumbnail: "/analytics/analytic-2.png" }],
+    categories: [Category.AgenticAI, Category.AWS, Category.Frontend, Category.Backend],
+    des: "AI intelligence advisor with trends analytics, ads conversion, market share, brand traffics, and charts generation on AWS Strand Agent and MCP.",
+    git: "https://github.com/thangtran3112",
+    link: "https://advisor.stackline.com",
+  },
+  {
+    title: "Fashion Marketplace",
+    media: ["/fashionify/fashionify.jpg"],
+    categories: [Category.Backend, Category.Frontend, Category.AWS],
+    des: "Admin Dashboard + Shopping, MERN, API Gateway, AWS Lambda, S3, Cognito, and Cloudfront.",
+    git: "https://github.com/thangtran3112/ecom/tree/main/fashionify",
+    link: "https://fashionify.thangtrandev.net",
+  },
+  {
     title: "Multi-tenancy Marketplace",
     media: ["/marketplace/img1.png"],
     categories: [Category.Backend, Category.Frontend, Category.AWS],
     des: "NextJS, Payload CMS Backend with ExpressJS, TRPC, MongoDB, Tailwind CSS, and Shadcn UI.",
     git: "https://github.com/thangtran3112/next-marketplace",
     link: "https://market.thangtrandev.net",
-  },
-  {
-    title: "AI Intelligence Advisor",
-    media: ["/analytics/analytic-1.png", "/analytics/analytic-2.png", { video: "/analytics/ecom-analytics.mp4", thumbnail: "/analytics/analytic-2.png" }],
-    categories: [Category.AgenticAI, Category.AWS, Category.Frontend, Category.Backend],
-    des: "AI intelligence advisor with trends analytics, ads conversion, market share, brand traffics, and charts generation on AWS Strand Agent and MCP.",
-    git: "https://github.com/thangtran3112",
-    link: "#",
-  },
-  {
-    title: "Fashion Ecom Prototype",
-    media: ["/fashionify/fashionify.jpg"],
-    categories: [Category.Backend, Category.Frontend, Category.AWS],
-    des: "Admin Dashboard + Shopping, MERN, API Gateway, AWS Lambda, S3, Cognito, and Cloudfront.",
-    git: "https://github.com/thangtran3112/ecom/tree/main/fashionify",
-    link: "https://fashionify.thangtrandev.net",
   },
   {
     title: "Word Embedding- Simple RNN Training",

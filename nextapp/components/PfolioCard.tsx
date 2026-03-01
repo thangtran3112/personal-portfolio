@@ -9,8 +9,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { GitHubLink } from "./SocialIcons";
-import { Tooltip as ReactTooltip } from "react-tooltip";
-import { Category } from "@/constants/data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -22,22 +20,15 @@ import MediaOverlay, {
   VideoThumbnail,
 } from "./MediaOverlay";
 
-const PorfolioTooltips = () => {
-  return (
-    <>
-      {/* Add ReactTooltip components */}
-      <ReactTooltip id={Category.Backend.id} place="top" effect="solid" />
-      <ReactTooltip id={Category.Frontend.id} place="top" effect="solid" />
-      <ReactTooltip id={Category.AWS.id} place="top" effect="solid" />
-      <ReactTooltip id={Category.ML.id} place="top" effect="solid" />
-      <ReactTooltip id={Category.AgenticAI.id} place="top" effect="solid" />
-      <ReactTooltip id={Category.ANN.id} place="top" effect="solid" />
-      <ReactTooltip id={Category.NLP.id} place="top" effect="solid" />
-    </>
-  );
-};
 
-const PfolioCard = ({ media, title, categories, des, git, link }) => {
+const PfolioCard = ({ media, title, categories, des, git, link }: {
+  media?: any[];
+  title: string;
+  categories: { id: string; content: string }[];
+  des: string;
+  git: string;
+  link: string;
+}) => {
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [overlayIndex, setOverlayIndex] = useState(0);
 
@@ -48,27 +39,24 @@ const PfolioCard = ({ media, title, categories, des, git, link }) => {
 
   return (
     <Card className="relative group rounded-xl overflow-hidden">
-      <PorfolioTooltips />
-      <CardHeader className="px-4 pt-6 pb-2">
-        <div className="flex flex-row gap-3 justify-start">
+      <CardHeader className="p-4 pb-0 space-y-0">
+        <div className="flex flex-wrap gap-3 items-center justify-start mb-4">
           {categories.map((category) => {
             return (
               <Badge
                 key={category.id}
-                className="mb-3 capitalize"
-                data-tooltip-id={category.id}
-                data-tooltip-content={category.content}
+                className="px-3 py-1 text-sm capitalize cursor-default"
               >
                 {category.id}
               </Badge>
             );
           })}
         </div>
-        <div className="rounded-lg !inline-flex relative overflow-hidden group">
+        <div className="rounded-lg relative overflow-hidden group w-full aspect-[444/299]">
           <Swiper
             pagination={{ clickable: true }}
             modules={[Pagination]}
-            className="rounded-lg"
+            className="w-full h-full"
           >
             {media?.map((item, index) => {
               const isVideo = isVideoItem(item);
@@ -77,21 +65,20 @@ const PfolioCard = ({ media, title, categories, des, git, link }) => {
                   {isVideo ? (
                     <VideoThumbnail
                       item={item}
-                      width={444}
-                      height={299}
+                      fill
+                      className="w-full h-full"
                       onClick={() => openOverlay(index)}
                     />
                   ) : (
                     <div
-                      className="cursor-pointer"
+                      className="cursor-pointer w-full h-full relative"
                       onClick={() => openOverlay(index)}
                     >
                       <Image
                         src={item}
                         alt=""
-                        height={299}
-                        width={444}
-                        className="rounded-lg"
+                        fill
+                        className="rounded-lg object-cover"
                       />
                     </div>
                   )}
@@ -102,17 +89,19 @@ const PfolioCard = ({ media, title, categories, des, git, link }) => {
         </div>
       </CardHeader>
       {/* info */}
-      <CardContent>
-        <CardTitle className="mb-2 flex gap-3 lg:gap-4 items-center -mt-1">
+      <CardContent className="p-4 pt-4">
+        <CardTitle className="mb-2 flex gap-3 lg:gap-4 items-center text-lg">
           <Link
             href={link}
-            className="text-blue-500 hover:-translate-y-1 hover:underline hover:text-sky-300 transition-all duration-500"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:-translate-y-1 hover:underline hover:text-sky-300 transition-all duration-500 truncate"
           >
             {title}
           </Link>
-          <GitHubLink fullUrl={git} />
+          <GitHubLink fullUrl={git} className="flex-shrink-0" />
         </CardTitle>
-        <CardDescription>{des}</CardDescription>
+        <CardDescription className="line-clamp-3 h-[60px] text-sm">{des}</CardDescription>
       </CardContent>
 
       {/* Overlay modal */}

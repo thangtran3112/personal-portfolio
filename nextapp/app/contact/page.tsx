@@ -68,8 +68,8 @@ const page = () => {
             />
             <textarea
               id=""
-              cols="10"
-              rows="8"
+              cols={10}
+              rows={8}
               placeholder="Enter You Message"
               className="regular-14 rounded-lg px-4 py-2 dark:bg-secondary outline-none resize-none "
             ></textarea>
