@@ -42,5 +42,5 @@ variable "function_name" {
 variable "allowed_origins" {
   description = "CORS allowlist (comma-separated) for the contact function."
   type        = string
-  default     = "https://tobytran.dev,https://thangtrandev.net,http://localhost:3000"
+  default     = "https://tobytran.dev,https://thangtrandev.net,https://tobytran-portfolio.web.app,http://localhost:3000"
 }
