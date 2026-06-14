@@ -50,62 +50,62 @@ contact form ──fetch (client)────▶│ Cloud Function (2nd gen) ─
 
 ---
 
+## 🚀 LIVE STATUS (2026-06-14)
+
+**The GCP deployment is LIVE and the CI pipeline is GREEN.** Site serves at
+**https://tobytran-portfolio.web.app** (200 on `/`, `/portfolio`, `/contact`).
+Only `tobytran.dev` **DNS** (Phase 6) remains.
+
+Pipeline history: run #1 failed (repo *Variables* were set as Secrets) → fixed; run #2 failed
+(Firebase `public` dir was outside `gcp/`) → moved config to repo root; run #3 failed (CI lost
+Terraform state between runs → 409s) → added **GCS remote backend** + imported the 8 existing
+resources; **run #4 = success**.
+
 ## 5. Phase tracker
 
-### Phase 0 — One-time GCP bootstrap (manual) 🟡
-Documented in `gcp/README.md`. Repo: **github.com/thangtran3112/personal-portfolio**.
+### Phase 0 — One-time GCP bootstrap ✅
+- [x] GCP project **`tobytran-portfolio`** + **Blaze billing** (confirmed `billingEnabled=True`)
+- [x] CI service account `ci-deployer` + `roles/owner` + key (`~/ci-deployer-key.json`)
+- [x] Resend account + `RESEND_API_KEY` (proven — Terraform stored it & the function deployed)
+- [x] GitHub **secrets**: `GCP_SA_KEY`, `RESEND_API_KEY`
+- [x] GitHub **variables**: `GCP_PROJECT_ID`, `GCP_REGION`, `NEXT_PUBLIC_CONTACT_API_URL` (set via `gh`)
+- [ ] Optional cleanup: `rm ~/ci-deployer-key.json` (still present — used for the local state import); delete the redundant *Secrets* copies of the three Variables
 
-- [x] Create GCP project **Portfolio** — exists as **`tobytran-portfolio`**
-- [ ] Link **billing** + upgrade to **Blaze** plan (required for Functions + Hosting custom domain) — **verify this is done**
-- [x] Enable `iam` + `cloudresourcemanager` APIs
-- [x] Create CI service account `ci-deployer` + bind `roles/owner` + create key → **`~/ci-deployer-key.json`**
-- [ ] Create **Resend** account, add `tobytran.dev` as sending domain, get API key
-- [ ] Add GitHub **secrets** (web UI — no `gh` CLI): `GCP_SA_KEY` (contents of `~/ci-deployer-key.json`), `RESEND_API_KEY`
-- [ ] Add GitHub **variables**: `GCP_PROJECT_ID`=`tobytran-portfolio`, `GCP_REGION`=`us-west1`, `NEXT_PUBLIC_CONTACT_API_URL`=`https://us-west1-tobytran-portfolio.cloudfunctions.net/contact`
-- [x] Project id == default → `gcp/.firebaserc` needs no change
-- [ ] After storing the key in the GitHub secret, `rm ~/ci-deployer-key.json`
+### Phase 1 — Terraform IaC ✅ APPLIED
+- [x] All `.tf` written, `fmt` clean, `validate` Success, cross-platform lock
+- [x] **GCS remote backend** (`gs://tobytran-portfolio-tfstate`, prefix `portfolio/gcp`) — state now persists across CI runs
+- [x] Seeded state by importing the 8 pre-existing resources (firebase project/site/custom-domain, SA, bucket, secret+version, function)
+- [x] **`terraform apply` succeeded in CI** (run #4)
 
-### Phase 1 — Terraform IaC ✅ (code complete; not yet applied)
-- [x] `providers.tf` — google + google-beta + archive; optional GCS backend (commented)
-- [x] `variables.tf` — project_id, region, domain, notification_email, from_email, resend_api_key (sensitive), etc.
-- [x] `apis.tf` — enable all required APIs (incl. compute for the build SA)
-- [x] `firebase.tf` — Firebase project + hosting site + custom domain (beta)
-- [x] `secrets.tf` — Secret Manager secret/version + accessor IAM for the fn SA
-- [x] `function.tf` — runtime SA, build-SA IAM, source zip→bucket, `cloudfunctions2_function`, public invoker
-- [x] `outputs.tf` — function URL (stable) + custom-domain DNS records
-- [x] `terraform.tfvars.example`
-- [x] `terraform fmt` clean + `terraform validate` **Success** (real provider schemas)
-- [x] Cross-platform provider lock (`.terraform.lock.hcl`: linux_amd64 + darwin) for CI
-- [ ] **`terraform apply`** against the real project _(blocked on Phase 0)_
+### Phase 2 — Firebase Hosting ✅ DEPLOYED
+- [x] `firebase.json` + `.firebaserc` at the **repo root** (`public: nextapp/out`) — moved out of `gcp/` because Firebase requires the public dir inside the config's directory
+- [x] `firebase deploy --only hosting` succeeded → site live on `*.web.app`
 
-### Phase 2 — Firebase Hosting config ✅
-- [x] `gcp/firebase.json` — `public: ../nextapp/out`, `cleanUrls`, SPA rewrite → `/index.html`
-- [x] `gcp/.firebaserc` — default project id
-- [ ] **First `firebase deploy --only hosting`** _(blocked on Phase 0)_
-
-### Phase 3 — Contact Cloud Function ✅ (code complete & locally tested)
-- [x] `contact-function/` moved to **repo root** (cloud-agnostic)
-- [x] `core.mjs` — transport-agnostic: zod schema, `corsHeaders()`, `processContact()`
-- [x] `index.mjs` — thin GCP functions-framework adapter
-- [x] `package.json` (ESM, functions-framework + resend + zod), `.gcloudignore`, `.gitignore`, `README.md`
-- [x] Local smoke test: preflight 204+CORS, invalid 400, no-key 500, GET 405, bad-origin no-ACAO
-- [ ] Verify live email send with a real `RESEND_API_KEY` _(blocked on Phase 0)_
+### Phase 3 — Contact Cloud Function ✅ DEPLOYED
+- [x] `contact-function/` at repo root, `core.mjs` + GCP adapter; deployed as `contact` (2nd gen, scale-to-zero), public preflight returns 204
+- [ ] Verify a real email send end-to-end (needs an allowed origin — see note below)
 
 ### Phase 4 — Client-side contact form ✅
-- [x] `nextapp/app/contact/page.tsx` → client component (`react-hook-form` + `zod`)
-- [x] `fetch` POST to `NEXT_PUBLIC_CONTACT_API_URL`; submitting/success/error states
-- [x] Graceful fallback to "email me directly" when the API URL is unset
-- [x] Static export build verified (`out/contact.html`, URL inlined) — AWS path unaffected
+- [x] `nextapp/app/contact/page.tsx` client form → `fetch` `NEXT_PUBLIC_CONTACT_API_URL`, graceful fallback
 
-### Phase 5 — CI ✅
-- [x] `.github/workflows/deploy-gcp.yml` — build → auth → terraform apply → firebase deploy
-- [x] `.github/workflows/deploy.yml` — added `NEXT_PUBLIC_CONTACT_API_URL` to the AWS build env
-- [ ] **First green run on push to `main`** _(blocked on Phase 0)_
+### Phase 5 — CI ✅ GREEN
+- [x] `deploy-gcp.yml` green (build → auth → terraform apply → firebase deploy, ~2m41s)
+- [x] `deploy.yml` (AWS) gets `NEXT_PUBLIC_CONTACT_API_URL` too — **AWS to be removed later** (along with `thangtrandev.net`)
 
-### Phase 6 — DNS at registrar (manual) ⬜
-- [ ] **Firebase Hosting**: add A + TXT records from `terraform output custom_domain_dns_records` (or Firebase console); SSL auto-provisions
-- [ ] **Resend**: add SPF/DKIM/verification (TXT/MX) records to verify `tobytran.dev`
-- [ ] Confirm `https://tobytran.dev` serves the site and the contact form sends mail
+### Phase 6 — DNS at registrar for `tobytran.dev` ⬜ (your only remaining step)
+Add at your registrar (from `terraform output custom_domain_dns_records`):
+
+| Type | Host/Name | Value |
+|------|-----------|-------|
+| **A** | `@` (apex) | `199.36.158.100` |
+| **TXT** | `@` | `hosting-site=tobytran-portfolio` |
+| **TXT** | `@` | `google-site-verification=GGhPKlPTpPGa2CLsKMLXSxN-XvSyZqyXABIlW3K18aY` _(already detected — may exist)_ |
+
+- [ ] Add the A + `hosting-site` TXT (verification TXT already discovered). Firebase auto-provisions SSL once they resolve (`.dev` → HTTPS mandatory).
+- [ ] **Resend**: add the SPF/DKIM records from the Resend dashboard to verify `tobytran.dev` as a sender.
+- [ ] Confirm `https://tobytran.dev` loads and the contact form sends mail.
+
+> **CORS note:** the function allowlist is `tobytran.dev` / `thangtrandev.net` / `localhost` — NOT the `*.web.app` staging URL. To test the contact form before DNS, add `https://tobytran-portfolio.web.app` to `allowed_origins` (function.tf default / `ALLOWED_ORIGINS`) and redeploy.
 
 ### Docs ✅
 - [x] `gcp/README.md` — full bootstrap → deploy → DNS runbook
