@@ -1,0 +1,5 @@
+# Firebase CLI cache (deploy runs from repo root)
+.firebase/
+firebase-debug.log
+
+.DS_Store

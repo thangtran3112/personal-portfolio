@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "../nextapp/out",
+    "public": "nextapp/out",
     "cleanUrls": true,
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [{ "source": "**", "destination": "/index.html" }]

@@ -28,13 +28,14 @@ contact form --fetch (client-side)--> Cloud Function (2nd gen, HTTP) --Resend-->
 ## Layout
 
 ```
+<repo root>/
+  firebase.json            # hosting: public nextapp/out, SPA rewrites (MUST be at root —
+  .firebaserc              #   Firebase requires the public dir inside the config's directory)
+  contact-function/        # cloud-agnostic function source (see its README)
 gcp/
-  firebase.json            # hosting: public ../nextapp/out, SPA rewrites
-  .firebaserc              # default project id (update if you used a different id)
+  README.md
   terraform/               # function + secret + Firebase project/site/custom-domain
-
-../contact-function/       # cloud-agnostic function source (repo root, see its README)
-                           # Terraform zips & deploys it as the GCP `contact` function
+                           #   (Terraform zips & deploys ../contact-function as `contact`)
 ```
 
 ---
@@ -139,8 +140,8 @@ export TF_VAR_resend_api_key="re_xxx"
 terraform init
 terraform apply
 
-# 4. Hosting
-cd ..
+# 4. Hosting (firebase.json is at the repo root)
+cd ../..
 firebase deploy --only hosting --project tobytran-portfolio
 ```
 

@@ -53,7 +53,7 @@ Flow:
 
 Parallel deployment of the **same** static export to Google Cloud for `tobytran.dev`. Read `gcp/README.md` for the full bootstrap → deploy → DNS runbook. Key points:
 
-- **Hosting:** Firebase Hosting (`gcp/firebase.json` serves `../nextapp/out`, SPA rewrite → `/index.html`, auto Google-managed SSL). **No load balancer.** Deployed via the Firebase CLI.
+- **Hosting:** Firebase Hosting (`firebase.json` at the **repo root** serves `nextapp/out`, SPA rewrite → `/index.html`, auto Google-managed SSL). It must be at the root — Firebase requires the public dir to be inside the config's directory. **No load balancer.** Deployed via the Firebase CLI.
 - **Contact form:** client-side `fetch` (no server action) to a **Cloud Functions 2nd gen** HTTP endpoint (`contact-function/`, `min-instances=0` → scales to zero), which sends mail via **Resend**. The function URL is injected into the build via `NEXT_PUBLIC_CONTACT_API_URL` (a deterministic `https://<region>-<project>.cloudfunctions.net/contact`); when unset, the contact page degrades to "email me directly".
 - **IaC:** Terraform in `gcp/terraform/` provisions the Firebase project/site/custom-domain, the function (zips `contact-function/`), Secret Manager (`RESEND_API_KEY`), and IAM. The Firebase Hosting *content* deploy is the Firebase CLI, not Terraform.
 - **Commands:** `cd gcp/terraform && terraform init && terraform apply` (needs `TF_VAR_project_id`, `TF_VAR_region`, `TF_VAR_resend_api_key`), then `cd gcp && firebase deploy --only hosting`.
