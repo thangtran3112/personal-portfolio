@@ -29,6 +29,9 @@ jobs:
 
       - name: Build Next.js (Static Export)
         working-directory: ./nextapp
+        env:
+          # Same GCP contact function backs the AWS-served site too (CORS allows it).
+          NEXT_PUBLIC_CONTACT_API_URL: ${{ vars.NEXT_PUBLIC_CONTACT_API_URL }}
         run: npm run build
 
       # 2. Deploy AWS CDK Stack

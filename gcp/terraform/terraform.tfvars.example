@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars (gitignored) and fill in, OR pass via TF_VAR_* env vars.
+project_id         = "tobytran-portfolio"
+region             = "us-west1"
+domain             = "tobytran.dev"
+notification_email = "thangtran3112@gmail.com"
+from_email         = "Portfolio Contact <contact@tobytran.dev>"
+
+# Prefer exporting this instead of committing it:
+#   export TF_VAR_resend_api_key="re_xxx"
+# resend_api_key = "re_xxx"

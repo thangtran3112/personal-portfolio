@@ -1,0 +1,71 @@
+name: Deploy to GCP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'npm'
+          cache-dependency-path: |
+            nextapp/package-lock.json
+
+      # 1. Build Next.js static export (contact form points at the GCP function)
+      - name: Install Next.js dependencies
+        working-directory: ./nextapp
+        run: npm ci
+
+      - name: Build Next.js (Static Export)
+        working-directory: ./nextapp
+        env:
+          NEXT_PUBLIC_CONTACT_API_URL: ${{ vars.NEXT_PUBLIC_CONTACT_API_URL }}
+        run: npm run build
+
+      # 2. Authenticate to Google Cloud (ADC for both Terraform and Firebase)
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      # 3. Provision/update infra: contact function, secret, Firebase project + custom domain
+      - name: Terraform Init
+        working-directory: ./gcp/terraform
+        run: terraform init
+
+      - name: Terraform Apply
+        working-directory: ./gcp/terraform
+        env:
+          TF_VAR_project_id: ${{ vars.GCP_PROJECT_ID }}
+          TF_VAR_region: ${{ vars.GCP_REGION }}
+          TF_VAR_resend_api_key: ${{ secrets.RESEND_API_KEY }}
+        run: terraform apply -auto-approve
+
+      # 4. Deploy the static site to Firebase Hosting
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to Firebase Hosting
+        working-directory: ./gcp
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
+        run: firebase deploy --only hosting --project "${{ vars.GCP_PROJECT_ID }}" --non-interactive

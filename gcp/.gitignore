@@ -1,0 +1,16 @@
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/.build/
+crash.log
+
+# Variable files & credentials (keep the .example tracked)
+*.tfvars
+key.json
+*-key.json
+.runtimeconfig.json
+
+# Firebase
+.firebase/
+firebase-debug.log

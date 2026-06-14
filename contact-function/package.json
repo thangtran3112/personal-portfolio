@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-contact-function",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "functions-framework --target=contact",
+    "dev": "functions-framework --target=contact"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.4.2",
+    "resend": "^4.0.0",
+    "zod": "^4.3.6"
+  }
+}
