@@ -16,14 +16,13 @@ terraform {
     }
   }
 
-  # Recommended: keep state in a private GCS bucket so the Resend secret never
-  # lives on a laptop. Create the bucket once, then uncomment and run
-  # `terraform init -migrate-state`.
-  #
-  # backend "gcs" {
-  #   bucket = "tobytran-portfolio-tfstate"
-  #   prefix = "portfolio/gcp"
-  # }
+  # Remote state in a private GCS bucket so state PERSISTS across CI runs
+  # (without this, each ephemeral runner starts empty and re-creating already
+  # existing resources fails with 409). Bucket created once, out-of-band.
+  backend "gcs" {
+    bucket = "tobytran-portfolio-tfstate"
+    prefix = "portfolio/gcp"
+  }
 }
 
 provider "google" {
