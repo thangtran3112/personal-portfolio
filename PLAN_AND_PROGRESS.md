@@ -2,7 +2,7 @@
 
 > Living tracker for adding a **Google Cloud** deployment path (`tobytran.dev`)
 > alongside the existing, untouched **AWS** deployment (`thangtrandev.net`).
-> Last updated: **2026-06-14**.
+> Last updated: **2026-06-14** (DNS added, CORS + CI path-filter updated).
 
 ---
 
@@ -54,12 +54,16 @@ contact form ──fetch (client)────▶│ Cloud Function (2nd gen) ─
 
 **The GCP deployment is LIVE and the CI pipeline is GREEN.** Site serves at
 **https://tobytran-portfolio.web.app** (200 on `/`, `/portfolio`, `/contact`).
-Only `tobytran.dev` **DNS** (Phase 6) remains.
+DNS records for `tobytran.dev` added via Cloudflare — waiting for Firebase SSL provisioning.
 
 Pipeline history: run #1 failed (repo *Variables* were set as Secrets) → fixed; run #2 failed
 (Firebase `public` dir was outside `gcp/`) → moved config to repo root; run #3 failed (CI lost
 Terraform state between runs → 409s) → added **GCS remote backend** + imported the 8 existing
 resources; **run #4 = success**.
+
+Latest changes (commit `9950bcb`):
+- `deploy-gcp.yml`: `paths-ignore: ['**.md']` — markdown-only commits no longer trigger a redeploy.
+- `variables.tf`: `https://tobytran-portfolio.web.app` added to `ALLOWED_ORIGINS` — contact form testable from the staging URL before DNS propagates.
 
 ## 5. Phase tracker
 
@@ -92,20 +96,24 @@ resources; **run #4 = success**.
 - [x] `deploy-gcp.yml` green (build → auth → terraform apply → firebase deploy, ~2m41s)
 - [x] `deploy.yml` (AWS) gets `NEXT_PUBLIC_CONTACT_API_URL` too — **AWS to be removed later** (along with `thangtrandev.net`)
 
-### Phase 6 — DNS at registrar for `tobytran.dev` ⬜ (your only remaining step)
-Add at your registrar (from `terraform output custom_domain_dns_records`):
+### Phase 6 — DNS at registrar for `tobytran.dev` 🟡 In progress
 
-| Type | Host/Name | Value |
-|------|-----------|-------|
-| **A** | `@` (apex) | `199.36.158.100` |
-| **TXT** | `@` | `hosting-site=tobytran-portfolio` |
-| **TXT** | `@` | `google-site-verification=GGhPKlPTpPGa2CLsKMLXSxN-XvSyZqyXABIlW3K18aY` _(already detected — may exist)_ |
+Records added to Cloudflare on 2026-06-14:
 
-- [ ] Add the A + `hosting-site` TXT (verification TXT already discovered). Firebase auto-provisions SSL once they resolve (`.dev` → HTTPS mandatory).
-- [ ] **Resend**: add the SPF/DKIM records from the Resend dashboard to verify `tobytran.dev` as a sender.
+| Type | Host/Name | Value | Status |
+| ---- | --------- | ----- | ------ |
+| **A** | `@` (apex) | `199.36.158.100` | ✅ Added (DNS-only, not proxied) |
+| **TXT** | `@` | `hosting-site=tobytran-portfolio` | ✅ Added |
+| **TXT** | `@` | `google-site-verification=GGhPKlPTpPGa2CLsKMLXSxN-XvSyZqyXABIlW3K18aY` | ✅ Was already present |
+
+Playwright check result: `ERR_CERT_COMMON_NAME_INVALID` — DNS resolves (no `ERR_NAME_NOT_RESOLVED`) but Firebase SSL cert not yet provisioned. Expected: Firebase auto-provisions within 5–30 min of DNS propagation.
+
+- [x] Add the A + `hosting-site` TXT records (done via Cloudflare MCP).
+- [ ] **Firebase SSL** — wait for cert provisioning (check Firebase console → Hosting → custom domain status).
+- [ ] **Resend**: add SPF/DKIM records from the Resend dashboard to verify `tobytran.dev` as a sender.
 - [ ] Confirm `https://tobytran.dev` loads and the contact form sends mail.
 
-> **CORS note:** the function allowlist is `tobytran.dev` / `thangtrandev.net` / `localhost` — NOT the `*.web.app` staging URL. To test the contact form before DNS, add `https://tobytran-portfolio.web.app` to `allowed_origins` (function.tf default / `ALLOWED_ORIGINS`) and redeploy.
+> **CORS:** `tobytran-portfolio.web.app` is now in the allowlist — contact form testable at the staging URL while waiting for SSL.
 
 ### Docs ✅
 - [x] `gcp/README.md` — full bootstrap → deploy → DNS runbook
