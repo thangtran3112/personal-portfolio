@@ -2,7 +2,32 @@
 
 > Living tracker for adding a **Google Cloud** deployment path (`tobytran.dev`)
 > alongside the existing, untouched **AWS** deployment (`thangtrandev.net`).
-> Last updated: **2026-06-14** (DNS added, CORS + CI path-filter updated).
+> Last updated: **2026-10-18** (GCP credential containment and keyless CI preparation).
+
+## 2026-10-18 remediation status
+
+- Project reinstated; legacy `ci-deployer` key revoked with owner approval and
+  verified absent. Portfolio GCP deployment is paused until keyless cutover.
+- Local preparation: retain `ci-deployer`; use broad predefined service-admin
+  roles, not Owner/Editor or custom per-resource permissions. Bootstrap trust
+  outside the site's Terraform root; restrict it to this repository's immutable
+  IDs, `main`, and the GCP deploy workflow.
+- Site Terraform relinquishes its existing build-role binding with
+  `destroy = false`; the permission stays live and operator-managed.
+- Bootstrap applied with owner approval: trust, impersonation binding, and all
+  ten managed service roles verified; account still has zero keys. Both new
+  repository variables set and verified with approval.
+- Production read-only preflight: only the old build-role state entry is
+  forgotten; no resource update/create/delete. Personal-token preflight requires
+  per-process quota-project settings, documented in the runbook.
+- Pending: approve a live keyless deploy, remove Owner, then verify deployment
+  without Owner. Local checks and owner-context plans do not prove cutover.
+- Manual cleanup pending: remove obsolete GitHub secret `GCP_SA_KEY`.
+- Preserve all other projects, existing service identities, Cloud Run workloads,
+  AWS deployment, and existing secrets. Full runbook: `gcp/README.md`.
+
+The sections below preserve the original June migration history; its historical
+successful deployments are not verification of the October auth migration.
 
 ---
 
@@ -69,11 +94,11 @@ Latest changes (commit `9950bcb`):
 
 ### Phase 0 — One-time GCP bootstrap ✅
 - [x] GCP project **`tobytran-portfolio`** + **Blaze billing** (confirmed `billingEnabled=True`)
-- [x] CI service account `ci-deployer` + `roles/owner` + key (`~/ci-deployer-key.json`)
+- [x] Historical CI bootstrap used `ci-deployer` with Owner and a key; key revoked October 18. Superseded by the keyless remediation above.
 - [x] Resend account + `RESEND_API_KEY` (proven — Terraform stored it & the function deployed)
 - [x] GitHub **secrets**: `GCP_SA_KEY`, `RESEND_API_KEY`
 - [x] GitHub **variables**: `GCP_PROJECT_ID`, `GCP_REGION`, `NEXT_PUBLIC_CONTACT_API_URL` (set via `gh`)
-- [ ] Optional cleanup: `rm ~/ci-deployer-key.json` (still present — used for the local state import); delete the redundant *Secrets* copies of the three Variables
+- [ ] Remove obsolete `GCP_SA_KEY` from GitHub Settings; do not recreate a local key file.
 
 ### Phase 1 — Terraform IaC ✅ APPLIED
 - [x] All `.tf` written, `fmt` clean, `validate` Success, cross-platform lock
@@ -172,14 +197,14 @@ nextapp/next.config.mjs             # output: "export" stays
 
 ## 8. Your next actions (unblock the live deploy)
 
-1. Do **Phase 0** (create project, billing, SA key, Resend, GitHub secrets/vars).
-2. Trigger deploy — push to `main` (CI) **or** run locally (`terraform apply` then `firebase deploy`).
+1. Complete the approved keyless bootstrap and variables in `gcp/README.md`; do not issue a service-account key.
+2. Separately approve deployment — merging to `main` triggers CI; verify the plan before applying any local alternative.
 3. Do **Phase 6** (add Firebase + Resend DNS records at the registrar), wait for SSL.
 4. Verify `https://tobytran.dev` + send a test message through the contact form.
 
 ## 9. Future / out of scope (not built)
 
 - **AWS Lambda adapter** for `contact-function` (the `core.mjs` split is ready for it).
-- **Workload Identity Federation** instead of the `GCP_SA_KEY` static key (enterprise hardening).
+- **Workload Identity Federation** is now prepared; live cutover and Owner removal remain pending approval/verification.
 - Optional `api.tobytran.dev` custom domain for the function.
-- GCS remote Terraform backend (commented in `providers.tf`) to keep state + Resend secret off laptops.
+- GCS remote Terraform backend is configured in `providers.tf`; keep state and saved plans private.

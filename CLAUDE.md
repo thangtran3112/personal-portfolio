@@ -57,14 +57,14 @@ Parallel deployment of the **same** static export to Google Cloud for `tobytran.
 - **Contact form:** client-side `fetch` (no server action) to a **Cloud Functions 2nd gen** HTTP endpoint (`contact-function/`, `min-instances=0` → scales to zero), which sends mail via **Resend**. The function URL is injected into the build via `NEXT_PUBLIC_CONTACT_API_URL` (a deterministic `https://<region>-<project>.cloudfunctions.net/contact`); when unset, the contact page degrades to "email me directly".
 - **IaC:** Terraform in `gcp/terraform/` provisions the Firebase project/site/custom-domain, the function (zips `contact-function/`), Secret Manager (`RESEND_API_KEY`), and IAM. The Firebase Hosting *content* deploy is the Firebase CLI, not Terraform.
 - **Commands:** `cd gcp/terraform && terraform init && terraform apply` (needs `TF_VAR_project_id`, `TF_VAR_region`, `TF_VAR_resend_api_key`), then `cd gcp && firebase deploy --only hosting`.
-- Project bootstrap (create the `Portfolio` project, billing, CI service-account key, GitHub secrets/variables, Resend account) is **manual** — documented in `gcp/README.md` Phase 0.
+- Project/billing bootstrap remains manual. Keyless CI identity and broad predefined deploy roles are operator-managed by `gcp/bootstrap-wif.sh`, outside site Terraform; see `gcp/README.md`. Never run it without production IAM approval, create a replacement deploy key, or grant Owner to unblock CI. Keep the existing `ci-deployer` identity; remove its legacy Owner role only after a verified keyless cutover and separate approval.
 
 ## CI
 
 Two workflows run on push to `main`, in parallel and independently:
 
 - `.github/workflows/deploy.yml` (**AWS**): builds the static export, then `cdk deploy --require-approval never` using `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` secrets.
-- `.github/workflows/deploy-gcp.yml` (**GCP**): builds the static export, then `terraform apply` (function + Firebase infra) and `firebase deploy --only hosting`, authenticating via the `GCP_SA_KEY` secret. Uses repo variables `GCP_PROJECT_ID`, `GCP_REGION`, `NEXT_PUBLIC_CONTACT_API_URL` and the `RESEND_API_KEY` secret.
+- `.github/workflows/deploy-gcp.yml` (**GCP**): builds the static export, plans and applies Terraform (function + Firebase infra), then `firebase deploy --only hosting`, authenticating through GitHub OIDC + service-account impersonation. Uses repo variables `GCP_PROJECT_ID`, `GCP_REGION`, `GCP_WIF_PROVIDER`, `GCP_DEPLOY_SERVICE_ACCOUNT`, `NEXT_PUBLIC_CONTACT_API_URL` and the unchanged `RESEND_API_KEY` secret. `GCP_SA_KEY` is obsolete. Terraform 1.7+ is required for the non-destructive build-role state handoff; CI pins 1.14.5.
 
 Both build steps set `NEXT_PUBLIC_CONTACT_API_URL` so the contact form works regardless of which cloud serves the page (the function's CORS allowlist includes both domains).
 
