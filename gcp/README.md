@@ -52,41 +52,50 @@ Terraform can't bootstrap itself (it needs a project + credentials first).
 - Link a **billing account** and use the **Blaze** (pay-as-you-go) plan —
   required for Cloud Functions and Firebase Hosting custom domains. Idle cost ≈ $0.
 
-### 2. CI service account + key
+### 2. Keyless CI identity (operator-only bootstrap)
+
+The deploy identity remains `ci-deployer`, so existing references need not be
+renamed. Its legacy key was revoked on 2026-10-18. Do not create a replacement
+key or grant Owner to get deployment working again.
+
+After explicit approval for the production IAM changes, run from the repo root:
 
 ```bash
 PROJECT_ID=tobytran-portfolio
-gcloud config set project "$PROJECT_ID"
-
-# Fresh projects: enable the APIs needed to create the SA + set IAM FIRST,
-# otherwise the create below fails silently and the IAM binding then errors
-# with INVALID_ARGUMENT on the member.
-gcloud services enable iam.googleapis.com cloudresourcemanager.googleapis.com
-
-gcloud iam service-accounts create ci-deployer \
-  --display-name="CI deployer (Terraform + Firebase)"
-
-# Confirm it exists before binding — IAM is eventually consistent.
-gcloud iam service-accounts list
-
-# Simplest for a personal project. Tighter set: Firebase Admin, Cloud Functions
-# Admin, Run Admin, Service Account User, Secret Manager Admin, Storage Admin,
-# Service Usage Admin, Artifact Registry Admin, Cloud Build Editor.
-sleep 20  # let the new SA propagate so the binding doesn't 400
-gcloud projects add-iam-policy-binding "$PROJECT_ID" \
-  --member="serviceAccount:ci-deployer@${PROJECT_ID}.iam.gserviceaccount.com" \
-  --role="roles/owner"
-
-gcloud iam service-accounts keys create key.json \
-  --iam-account="ci-deployer@${PROJECT_ID}.iam.gserviceaccount.com"
+export CLOUDSDK_ACTIVE_CONFIG_NAME=personal
+bash gcp/bootstrap-wif.sh --apply
 ```
 
-`key.json` is gitignored — don't commit it.
+The script is additive and targets only `tobytran-portfolio`. It creates or
+updates the `portfolio-deploy` pool and `github` provider, and grants
+`roles/iam.workloadIdentityUser` on the existing account. Trust requires the
+immutable GitHub owner/repository IDs, repository name, `refs/heads/main`, and
+the exact `.github/workflows/deploy-gcp.yml` workflow. Forks, other workflows,
+and other repositories are not trusted. Other consumers need their own reviewed
+keyless trust; never broaden this provider to every personal repository.
 
-> **If the binding still errors with `INVALID_ARGUMENT` on the member:** the SA
-> isn't visible yet. Run `gcloud iam service-accounts list` to confirm it exists,
-> then re-run the `add-iam-policy-binding` command (propagation can take up to a
-> minute).
+Deployment uses these broad predefined Google roles, rather than custom or
+per-resource grants:
+
+```
+roles/serviceusage.serviceUsageAdmin  roles/firebase.admin
+roles/cloudfunctions.admin           roles/run.admin
+roles/cloudbuild.builds.editor        roles/artifactregistry.admin
+roles/secretmanager.admin            roles/storage.admin
+roles/iam.serviceAccountAdmin        roles/iam.serviceAccountUser
+```
+
+These are powerful roles, including secret and service-account administration;
+this is keyless deployment, not strict least-privilege isolation. The script does
+not grant Owner, Editor, Project IAM Admin, or Workload Identity Pool Admin. It
+does not revoke existing roles, delete an identity, or touch another project.
+
+The script also preserves the default compute account's existing
+`roles/cloudbuild.builds.builder` grant. Site Terraform uses a `removed` block
+with `destroy = false` to relinquish that state entry **without revoking the
+grant**. This requires Terraform 1.7+; CI is pinned to tested version 1.14.5.
+Bootstrap is deliberately outside `gcp/terraform`, so the site workflow never
+runs it. Rerunning it repairs additive grants; it does not perform final cleanup.
 
 ### 3. Resend
 
@@ -99,51 +108,105 @@ gcloud iam service-accounts keys create key.json \
 
 | Kind     | Name                          | Value                                                        |
 |----------|-------------------------------|--------------------------------------------------------------|
-| Secret   | `GCP_SA_KEY`                  | contents of `key.json`                                        |
 | Secret   | `RESEND_API_KEY`              | the Resend API key                                           |
 | Variable | `GCP_PROJECT_ID`              | `tobytran-portfolio`                                          |
 | Variable | `GCP_REGION`                  | `us-west1`                                                    |
+| Variable | `GCP_WIF_PROVIDER`            | full resource name of the bootstrapped `github` provider       |
+| Variable | `GCP_DEPLOY_SERVICE_ACCOUNT`  | the existing `ci-deployer` account identity                    |
 | Variable | `NEXT_PUBLIC_CONTACT_API_URL` | `https://us-west1-tobytran-portfolio.cloudfunctions.net/contact` |
 
 The function URL is deterministic, so you can set it before the first deploy.
 Add the same `NEXT_PUBLIC_CONTACT_API_URL` variable so the AWS workflow's build
 picks it up too (the function's CORS allowlist already includes both domains).
 
-> **Hardening (optional):** replace the `GCP_SA_KEY` static key with
-> **Workload Identity Federation** (keyless OIDC from GitHub Actions) — the
-> recommended enterprise pattern. Not wired up here to keep the first deploy simple.
+After separately approving each GitHub write, set the two new variables without
+creating a credential file:
+
+```bash
+WIF_PROVIDER="$(gcloud --configuration=personal --project="$PROJECT_ID" \
+  iam workload-identity-pools providers describe github --location=global \
+  --workload-identity-pool=portfolio-deploy --format='value(name)')"
+gh variable set GCP_WIF_PROVIDER --body "$WIF_PROVIDER" \
+  --repo thangtran3112/personal-portfolio
+gh variable set GCP_DEPLOY_SERVICE_ACCOUNT \
+  --body "ci-deployer@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --repo thangtran3112/personal-portfolio
+```
+
+Manually remove stale repository secret `GCP_SA_KEY` in GitHub Settings. The
+workflow no longer reads it. `RESEND_API_KEY` and all AWS secrets stay unchanged.
+`google-github-actions/auth` creates short-lived ADC configuration for both
+Terraform and the Firebase Hosting CLI; never replace it with a new JSON key.
+
+### 5. Verify cutover, then remove Owner
+
+Before authorizing a push/merge to `main`, explicitly approve and run the
+read-only operator preflight below against the exact proposed source. Review
+that plan first: the old build-role binding must be forgotten, not destroyed,
+and there must be no unexpected resource deletion. Repeat preflight if deployment
+source, inputs, or cloud state change before deployment approval.
+
+Push/merge to `main` is a real deployment and requires separate approval. CI
+plans and immediately applies that saved plan; it does **not** pause for plan
+review. Its plan output is not a substitute for the pre-push approval check.
+Never upload a plan/state as an artifact; both can contain secrets.
+
+After a real keyless Terraform + Firebase deploy succeeds, separately approve
+the following IAM reduction:
+
+```bash
+gcloud --configuration=personal --project="$PROJECT_ID" projects remove-iam-policy-binding "$PROJECT_ID" \
+  --member="serviceAccount:ci-deployer@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --role=roles/owner --condition=None
+```
+
+Keep the account and other bindings. Verify its user-managed key list is empty,
+Owner is absent from its project roles, and the next deployment succeeds with
+the managed service roles. A successful run while Owner remains does **not**
+prove the reduced role set is sufficient. Fix any specific missing service role
+instead of restoring Owner or issuing a key.
 
 ---
 
 ## Phase 1 — First deploy
 
-### Option A — let CI do it (recommended)
+### Deploy through CI
 
-Push to `main`. The `Deploy to GCP` workflow builds the site, runs
-`terraform apply`, and `firebase deploy`. Both the AWS and GCP workflows run.
+After the approved preflight and separate deployment approval, push/merge to
+`main`. The `Deploy to GCP` workflow builds the site, runs
+`terraform plan`, applies that saved plan, and runs `firebase deploy`. Both the
+AWS and GCP workflows run; changing GCP authentication does not change AWS IAM.
 
-### Option B — local
+### Read-only operator preflight (not a local deployment alternative)
+
+Run from the repo root only after approving the read-only production-state and
+existing application-secret reads. This explicitly supplies personal-account
+credentials to **both** backend initialization and the provider. The existing
+Resend value stays in the subprocess environment; do not enable shell tracing,
+echo values, or save them to a file. No shared ADC or Firebase login is changed.
 
 ```bash
-# 1. Build the static site
-cd ../nextapp
-NEXT_PUBLIC_CONTACT_API_URL="https://us-west1-tobytran-portfolio.cloudfunctions.net/contact" npm run build
-
-# 2. Auth (uses your gcloud login or the CI key)
-gcloud auth application-default login   # or: export GOOGLE_APPLICATION_CREDENTIALS=.../key.json
-
-# 3. Infra
-cd ../gcp/terraform
-export TF_VAR_project_id=tobytran-portfolio
-export TF_VAR_region=us-west1
-export TF_VAR_resend_api_key="re_xxx"
-terraform init
-terraform apply
-
-# 4. Hosting (firebase.json is at the repo root)
-cd ../..
-firebase deploy --only hosting --project tobytran-portfolio
+(
+  set +x
+  set -euo pipefail
+  export CLOUDSDK_ACTIVE_CONFIG_NAME=personal
+  export GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --configuration=personal auth print-access-token)"
+  export TF_VAR_project_id=tobytran-portfolio
+  export TF_VAR_region=us-west1
+  # Personal user tokens need an explicit quota project for the Firebase API.
+  export USER_PROJECT_OVERRIDE=true
+  export GOOGLE_BILLING_PROJECT=tobytran-portfolio
+  export TF_VAR_resend_api_key="$(gcloud --configuration=personal --project=tobytran-portfolio \
+    secrets versions access latest --secret=resend-api-key)"
+  test -n "$GOOGLE_OAUTH_ACCESS_TOKEN" && test -n "$TF_VAR_resend_api_key"
+  terraform -chdir=gcp/terraform init -input=false -lockfile=readonly
+  terraform -chdir=gcp/terraform plan -input=false
+)
 ```
+
+This never applies infrastructure or deploys Hosting. Live Firebase/ADC
+compatibility is verified by the separately approved keyless CI deployment,
+not by relying on a potentially unrelated local Firebase login.
 
 ---
 
@@ -188,10 +251,24 @@ URL directly.
   `terraform import google_firebase_hosting_site.portfolio tobytran-portfolio`.
 - **First-build IAM error** (Cloud Build can't access the source/registry): the
   default compute service account needs `roles/cloudbuild.builds.builder` — this
-  is granted in `function.tf`; re-run apply if propagation lagged.
+  is granted by the operator-only `bootstrap-wif.sh`, not site Terraform.
 - **State holds the Resend secret:** keep `terraform.tfstate` private. Prefer the
-  GCS remote backend (commented in `providers.tf`).
+  configured GCS remote backend; never print state, tokens, or credential files.
 - **Runtime:** the function is pinned to `nodejs22`; bump to `nodejs24` if/when
   available in your region.
 - **Tear down:** `cd terraform && terraform destroy` removes the GCP resources.
   This does **not** touch AWS / `thangtrandev.net`.
+
+## Local verification (no cloud mutation)
+
+```bash
+python3 -m unittest discover -s gcp -p 'test_*.py'
+bash -n gcp/bootstrap-wif.sh
+terraform -chdir=gcp/terraform init -backend=false -lockfile=readonly
+terraform -chdir=gcp/terraform fmt -check
+terraform -chdir=gcp/terraform validate
+```
+
+The script tests stub the cloud CLI, exercise new/existing trust and failed
+grants, and verify no account/key deletion or role removal is attempted. These
+checks are not evidence of a successful live Workload Identity deployment.

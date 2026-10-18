@@ -1,6 +1,7 @@
 # Firebase CLI cache (deploy runs from repo root)
 .firebase/
 firebase-debug.log
+gha-creds-*.json
 
 .DS_Store
 .playwright-mcp/

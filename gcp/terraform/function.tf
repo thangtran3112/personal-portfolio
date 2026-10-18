@@ -7,14 +7,14 @@ resource "google_service_account" "fn_runtime" {
   depends_on = [google_project_service.services]
 }
 
-# Cloud Build (used to build 2nd-gen functions) runs as the default compute
-# service account. New projects no longer auto-grant it the builder role.
-resource "google_project_iam_member" "compute_sa_builder" {
-  project = var.project_id
-  role    = "roles/cloudbuild.builds.builder"
-  member  = "serviceAccount:${data.google_project.portfolio.number}-compute@developer.gserviceaccount.com"
+# The operator bootstrap owns this existing project-level grant. Forget the
+# old state entry WITHOUT revoking it; site deploys do not need Project IAM Admin.
+removed {
+  from = google_project_iam_member.compute_sa_builder
 
-  depends_on = [google_project_service.services]
+  lifecycle {
+    destroy = false
+  }
 }
 
 # --- Package the function source and upload it to a private bucket ---
@@ -84,7 +84,6 @@ resource "google_cloudfunctions2_function" "contact" {
 
   depends_on = [
     google_project_service.services,
-    google_project_iam_member.compute_sa_builder,
     google_secret_manager_secret_iam_member.fn_accessor,
     google_secret_manager_secret_version.resend_api_key,
   ]

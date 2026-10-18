@@ -3,6 +3,8 @@ terraform/.terraform/
 terraform/*.tfstate
 terraform/*.tfstate.*
 terraform/.build/
+*.tfplan
+__pycache__/
 crash.log
 
 # Variable files & credentials (keep the .example tracked)
